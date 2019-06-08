@@ -1,90 +1,56 @@
 var express = require('express');
 // var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 var Sequelize = require('sequelize');
 var User = require('./models')['Users'];
-
+var expressHandlebars = require('express-handlebars');
 var app = express();
+
 var PORT = process.env.PORT || 5000;
-//connection to the MySQL database
-// var connection = require('./config/connection.json');
-
-// app.configure(function(){  // old and deprecated?
-// app.use(express.session());
-app.use(passport.initialize());
-app.use(passport.session());
-
-// });
-
-// passport.use(new LocalStrategy({
-//     usernameField: 'email',
-//     passwordField: 'password'
-// },
-//     function (username, password, done) {
-//         User.find({ where: { email: username } })
-//             .then(function (user) {
-//                 if (!user)
-//                     return done(null, false, { message: "User entered does not exist." });
-//                 else if (!hashing.compare(password, user.password))
-//                     return done(null, false, { message: "Incorrect Password." });
-//                 else
-//                     return done(null, user);
-//             });
-//     }
-
-// ));
-
-// passport.serializeUser(function (user, done) {
-//     done(null, user.id);
-// });
-
-// passport.deserializeUser(function (id, done) {
-//     User.find(id)
-//         .success(function (user) {
-//             done(null, user);
-//         }).error(function (err) {
-//             done(new Error('The user ' + id + 'does not exist.'));
-//         });
-// });
-
-// // Serve static content for the app from the "public" directory in the application directory.
-// app.use(express.static(process.cwd() + '/public'));
-
-// Static directory
-app.use(express.static("public"));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var db = require('./models');
-// app.use(bodyParser.urlencoded({
-//     extended: false
-// }));
-// override with POST having ?_method=DELETE
-app.use(methodOverride('_method'));
-var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
+// For Passport
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
+// app.set('views', './views')
+// app.engine('hbs', exphbs({ extname: '.hbs' }));
+// app.set('view engine', '.hbs');
+
+app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 
+app.get('/', function (req, res) {
+    res.send('Welcome to Passport with Sequelize');
+});
 
-// require("./controllers/user_controller.js")(app);
-var userRoutes = require('./controllers/user_controller.js');
-app.use('/', userRoutes);
+//Models
+var models = require("./models");
 
-var port = process.env.PORT || 3000;
-// app.listen(port, function () {
-//     console.log('==> 🌎 Listening on PORT ' + port);
-// });
+//Routes
+var authRoute = require('./routes/auth.js')(app, passport);
 
-db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
-        console.log("'==> 🌎 App listening on PORT " + PORT);
-    });
+
+// Static directory
+app.use(express.static("public"));
+
+//load passport strategies
+require('./config/passport/passport.js')(passport, models.Users);
+
+//Sync Database
+models.sequelize.sync().then(function () {
+    console.log('Nice! Database looks fine')
+}).catch(function (err) {
+    console.log(err, "Something went wrong with the Database Update!")
+});
+app.listen(PORT, function (err) {
+    if (!err)
+        console.log("Site is live"); else console.log(err)
 });
