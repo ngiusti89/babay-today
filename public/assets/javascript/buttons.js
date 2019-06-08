@@ -1,12 +1,10 @@
-
-
 $(document).ready(function () {
 
     // Log buttons
     // Food
     $('#food').on('click', function () {
         var foodTime = new Date();
-        
+
         console.log(foodTime);
     });
 
