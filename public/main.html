@@ -15,22 +15,42 @@
 </head>
 
 <body>
+    <!-- baby photo header -->
     <div class="container">
         <img src="../public/assets/images/adorable-baby-beautiful-265987.jpg" alt="baby photo" id="baby-photo">
     </div>
 
-    <div class="p-3 mb-2 bg-info text-white">
-        <h3>Babay Today</h3>
-        <button type="button" class="btn btn-light" id="baby-menu"><i class="fa fa-th-list"
-                style="font-size:22px"></i></button>
-        <button type="button" class="btn btn-secondary" id="settings"><i class="fas fa-cog"
-                style="font-size:24px"></i></button>
-    </div>
+    <!-- baby main menu -->
+    <nav class="navbar navbar-expand-lg navbar-light text-white bg-info">
+        <div class="container">
+            <h3>Babay Today</h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="" id="baby-info"><i class="fas fa-baby"></i>&nbsp;Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" id="settings"><i class="fas fa-cog"></i>&nbsp;Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <br>
 
+    <!-- log buttons -->
     <div class="container" id="logButtons">
-        <button type="button" class="btn btn-success btn-lg btn-block" id="food"><i class="fas fa-utensils"></i>&nbsp;&nbsp;Food</button>
-        <button type="button" class="btn btn-warning btn-lg btn-block" id="change"><i class="fas fa-toilet"></i>&nbsp;&nbsp;Change</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="sleep"><i class="fas fa-bed"></i>&nbsp;&nbsp;Sleep</button>
+        <button type="button" class="btn btn-success btn-lg btn-block" id="food"><i
+                class="fas fa-utensils"></i>&nbsp;&nbsp;Food</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block" id="change"><i
+                class="fas fa-toilet"></i>&nbsp;&nbsp;Change</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="sleep"><i
+                class="fas fa-bed"></i>&nbsp;&nbsp;Sleep</button>
     </div>
 
 
@@ -48,7 +68,7 @@
         crossorigin="anonymous"></script>
 
     <!-- buttons js -->
-    <script src="../public/assets/javascript/buttons.js"></script>    
+    <script src="../public/assets/javascript/buttons.js"></script>
 </body>
 
 </html>
