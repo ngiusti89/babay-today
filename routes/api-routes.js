@@ -13,11 +13,11 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the todos
-  app.get("/api/todos", function(req, res) {
+  app.get("/users", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.todo.findAll({}).then(function(dbTodo) {
+    db.todo.findAll({}).then(function(dbUser) {
       // We have access to the todos as an argument inside of the callback function
-      res.json(dbTodo);
+      res.json(dbUser);
     });
   });
 }
