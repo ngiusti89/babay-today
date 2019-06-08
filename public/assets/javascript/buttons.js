@@ -1,18 +1,26 @@
+
+
 $(document).ready(function () {
 
     // Log buttons
     // Food
     $('#food').on('click', function () {
-        console.log("food clicked");
+        var foodTime = new Date();
+        
+        console.log(foodTime);
     });
 
-    // Diaper
-    $('#diaper').on('click', function () {
-        console.log("diaper clicked");
+    // change
+    $('#change').on('click', function () {
+        var changeTime = new Date();
+        
+        console.log(changeTime);
     });
 
     // Sleep
     $('#sleep').on('click', function () {
-        console.log("sleep clicked");
+        var sleepTime = new Date();
+
+        console.log(sleepTime);
     })
 });
