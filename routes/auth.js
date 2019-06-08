@@ -1,20 +1,23 @@
-var exports = module.exports = {}
+var authController = require('../controllers/auth_controller')
+module.exports = function (app, passport) {
+    app.get('/signup', authController.signup);
+    app.get('/signin', authController.signin);
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/signup'
+    }
+    ));
+    app.get('/dashboard', isLoggedIn, authController.dashboard);
+    app.get('/logout', authController.logout);
+    app.post('/signin', passport.authenticate('local-signin', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/signin'
+    }
+    ));
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated())
+            return next();
+        res.redirect('/signin');
+    }
 
-exports.signup = function(request, response){
-    response.render('signup');
 }
-
-exports.signin = function(request, response){
-    response.render('signin');
-}
-
-exports.dashboard = function(request, response){
-    response.render('dashboard');
-}
-
-exports.logout = function(request, response){
-    request.session.destroy(function(err){
-        responsse.redirect('/');
-    });
-}
-
