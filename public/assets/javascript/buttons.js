@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Log buttons
-    // Food
+    // food
     $('#food').on('click', function () {
         var foodTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
@@ -11,6 +11,12 @@ $(document).ready(function () {
             minute: '2-digit',
         });
         console.log(foodTime);
+
+        // TODO: post food timestamp
+        // $.post("/api/food", foodTime, function (data) {
+        // $("")
+        // });
+
     });
 
     // change
@@ -23,9 +29,16 @@ $(document).ready(function () {
             minute: '2-digit',
         });
         console.log(changeTime);
+
+        // TODO: post change timestamp
+        // $.post("/api/change", changeTime, function (data) {
+        // $("")
+
+        // });
+
     });
 
-    // Sleep
+    // sleep
     $('#sleep').on('click', function () {
         var sleepTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
@@ -35,5 +48,11 @@ $(document).ready(function () {
             minute: '2-digit',
         });
         console.log(sleepTime);
-    })
+
+        // TODO: post sleep timestamp
+        // $.post("/api/sleep", sleepTime, function (data) {
+        // $("")
+        // });
+
+    });
 });

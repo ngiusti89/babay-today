@@ -1,5 +1,43 @@
-#baby-photo {}
+body, html {
+    height: 100%;
+    margin: 0;
+}
 
-#baby-menu {}
+/* hero  */
 
-#settings {}
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("../images/adorable-baby-beautiful-265987.jpg");
+    height: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text {
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+h4 {
+    font-size: 28px;
+    line-height: 1.8em;
+}
+
+/* log buttons */
+
+#baby-menu {
+    max-width: 800px;
+}
+
+#log-buttons {
+    max-width: 800px;
+}
+
+.logButton {
+    font-size: 24px;
+    line-height: 3em;
+}

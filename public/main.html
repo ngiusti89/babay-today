@@ -5,25 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- bootstrap css & js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- font awesome -->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
         integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <!-- css -->
+    <link rel="stylesheet" href="../public/assets/css/style.css">
     <title>Baby Log Home</title>
 </head>
 
 <body>
     <!-- baby photo header -->
-    <div class="container">
-        <img src="../public/assets/images/adorable-baby-beautiful-265987.jpg" alt="baby photo" id="baby-photo">
+    <div class="hero-image">
+        <div class="hero-text">
+            <!-- TODO: pull in name, age from user input -->
+            <h1>Babay, [age]</h1>
+            <p>&nbsp;</p>
+        </div>
     </div>
 
     <!-- baby main menu -->
     <nav class="navbar navbar-expand-lg navbar-light text-white bg-info">
-        <div class="container">
-            <h3>Babay Today</h3>
+        <div class="container" id="baby-menu">
+            <!-- TODO: pull in name from user input -->
+            <h4>Babay Today</h4>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,10 +40,10 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="" id="baby-info"><i class="fas fa-baby"></i>&nbsp;Info</a>
+                        <a class="nav-link" href="/baby-logger" id="baby-info"><i class="fas fa-baby fa-fw"></i>Info</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" id="settings"><i class="fas fa-cog"></i>&nbsp;Settings</a>
+                        <a class="nav-link" href="" id="settings"><i class="fas fa-cog fa-fw"></i>Settings</a>
                     </li>
                 </ul>
             </div>
@@ -44,31 +53,23 @@
     <br>
 
     <!-- log buttons -->
-    <div class="container" id="logButtons">
-        <button type="button" class="btn btn-success btn-lg btn-block" id="food"><i
-                class="fas fa-utensils"></i>&nbsp;&nbsp;Food</button>
-        <button type="button" class="btn btn-warning btn-lg btn-block" id="change"><i
-                class="fas fa-toilet"></i>&nbsp;&nbsp;Change</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="sleep"><i
-                class="fas fa-bed"></i>&nbsp;&nbsp;Sleep</button>
+    <div class="container" id="log-buttons">
+        <button type="button" class="btn btn-success btn-lg btn-block logButton" id="food"><i
+                class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
+        <button type="button" class="btn btn-warning btn-lg btn-block logButton" id="change"><i
+                class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block logButton" id="sleep"><i
+                class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
     </div>
 
 
 
 
-    <!-- bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    
 
     <!-- buttons js -->
     <script src="../public/assets/javascript/buttons.js"></script>
+
 </body>
 
 </html>
