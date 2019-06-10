@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "6464N!dhi",
+    "password": "rootroot",
     "database": "babyblogger",
     "host": "127.0.0.1",
     "dialect": "mysql"
