@@ -2,3 +2,7 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+.babySelector{
+  margin-left: auto;
+  font-weight: bold;
+}

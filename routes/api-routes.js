@@ -21,17 +21,21 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/getbabies/:id", function(req, res) {
-      
+  app.get("/api/getbabies", function(req, res) {
+      if (req.user){
     db.Baby.findAll({
       where: {
-        account_id: req.params.id
+        account_id: req.user.id
       },
     }).then(function(dbd) {
       console.log("Found " + dbd);
       res.json(dbd);
     });
+  } else {
+    res.redirect("/login");
+  }
   });
+
 
   app.get("/api/getuser/:id", function(req, res) {
     console.log("Trying get with account id" + req.params.id)
@@ -73,7 +77,7 @@ module.exports = function (app) {
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {

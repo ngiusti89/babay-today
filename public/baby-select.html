@@ -3,43 +3,65 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Select your babe</title>
-  <!-- Latest compiled and minified CSS & JS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- bootstrap css & js -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- font awesome -->
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+    integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <!-- css -->
+  <link rel="stylesheet" href="../public/assets/css/style.css">
+  <title>Baby Log Home</title>
 </head>
 
 <body>
+  <nav class="site-header sticky-top py-1 navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2" href="/logout">Logout
+      </a>
+      <a class="py-2 d-none d-md-inline-block" href="#">BABY LOGGER 2000</a>
+
+
+    </div>
+  </nav>
+
+
   <div class="container baby">
-        <div class="row justify-content-center">
-        <div class="col-4 welcomeBanner">
-            Welcome to your baby logger      </div>
-        </div>
-        <div class="row justify-content-center">
-                <div class="col-md-6 baby-container">
-                        <h1>Your Babies</h1>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                            </tr>
-                            </thead>
-                            <tbody class="babyRows">
-                                
-                                </tbody></table>
-                </div>
-              </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6 baby-container">
+        <h1>Your Babies</h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+           
+            
+              <th>Age</th>
+            
+            
+              <th>Last Entry:</th>
+            </tr>
+          </thead>
+          <tbody class="babyRows">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="row justify-content-center">
       <div class="col-md-2 col-sm-2">
-        <a class="btn btn-light addBabyBtn" href="#">Add a Baby</a>
+        <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a>
       </div>
       <!-- <div class="col-md-2 col-sm-2">
         <a class="btn btn-light" href="/authors">Manage Babies</a>
       </div> -->
     </div>
-   
+
   </div>
   <!-- Custom Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>

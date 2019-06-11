@@ -1,58 +1,65 @@
-$(document).ready(function() {
-    var url = window.location.search;
-    var accid;
-    var babyList = $(".babyRows");
-    var babyContainer = $(".baby-container");
-  
-    if (url.indexOf("?acc_id=") !== -1) {
-        accid = url.split("=")[1];
-     //todo, grab session from cookies. 
-    searchForUserAccount(accid);
-      } else {
-          //todo redirect to login page if session deets not in cookies
-          window.location.href = "/";  
-      }
+$(document).ready(function () {
+  var url = window.location.search;
+  var accid;
+  var babyList = $(".babyRows");
+  var babyContainer = $(".baby-container");
 
-    
-      
+  // if (url.indexOf("?acc_id=") !== -1) {
+  //     accid = url.split("=")[1];
+  //  //todo, grab session from cookies. 
+  // searchForUserAccount(accid);
+  //   } else {
+  //       window.location.href = "/";  
+  //   }
 
 
 
-function searchForUserAccount(id){
-$.get("/api/getuser/"+id, function(data){
-if (data){
-    console.log("found data");
-        getBabyData(id);
-  
-}
-});
-}
 
-function  getBabyData(id){
-//id should be for account. get all babies associated. 
 
-    $.get("/api/getbabies/"+id, function(data) {
-        if (data) {
-            console.log("found a baby");
-            var rowsToAdd = [];
-            for (var i = 0; i < data.length; i++) {
-              rowsToAdd.push(createBabyRowSelector(data[i]));
-            }
-            console.log(rowsToAdd)
-            renderBabiesList(rowsToAdd);
-            
+
+  // function searchForUserAccount(id){
+  // $.get("/api/getuser/"+id, function(data){
+  // if (data){
+  //     console.log("found data");
+  //         getBabyData(id);
+
+  // }
+  // });
+  // }
+  getBabyData();
+  function getBabyData() {
+    //id should be for account. get all babies associated. 
+
+    $.get("/api/getbabies", function (data) {
+      if (data) {
+        console.log("found a baby");
+        var rowsToAdd = [];
+        for (var i = 0; i < data.length; i++) {
+          rowsToAdd.push(createBabyRowSelector(data[i]));
         }
-      });
-}
+        console.log(rowsToAdd)
+        renderBabiesList(rowsToAdd);
 
-function createBabyRowSelector(bbData) {
+      }
+    });
+  }
+
+  function createBabyRowSelector(bbData) {
     console.log(bbData.baby_name)
     var newTr = $("<tr>");
     newTr.data("babe", bbData.id);
-    var newTd = $("<td>");
-    newTd.text(bbData.baby_name);
-    newTd.appendTo(newTr)
-    
+    var babyNameTD = $("<td>");
+    babyNameTD.text(bbData.baby_name);
+    babyNameTD.appendTo(newTr)
+    var babySelector = $("<td>");
+    babySelector.addClass("babySelector")
+    babySelector.data("id", bbData.id)
+    var babyText = $('<a href="/main?baby-id=' + bbData.id + '">GoTo</a>');
+    babyText.addClass("babyLink");
+    babyText.appendTo(babySelector);
+
+    babySelector.appendTo(newTr);
+
     // if (bbData.Posts) {
     //   newTr.append("<td> " + bbData.Posts.length + "</td>");
     // } else {
@@ -64,21 +71,21 @@ function createBabyRowSelector(bbData) {
     return newTr;
   }
 
-  function renderBabiesList(rows){
+  function renderBabiesList(rows) {
     // babyList.children().not(":last").remove();
     // babyContainer.children(".alert").remove();
-   
+
     if (rows.length > 0) {
-        console.log(rows + babyList);
-        babyList.append(rows);
-        // babyContainer.append(babyList);
-      }
-      else {
-        renderEmpty();
-      }
+      console.log(rows + babyList);
+      babyList.append(rows);
+      // babyContainer.append(babyList);
+    }
+    else {
+      renderEmpty();
+    }
   }
 
-  function renderEmpty(){
+  function renderEmpty() {
     var alertDiv = $("<div>");
     alertDiv.addClass("alert alert-danger");
     alertDiv.text("You must create a BABY (again).");

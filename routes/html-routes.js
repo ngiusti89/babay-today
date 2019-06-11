@@ -16,10 +16,30 @@ module.exports = function (app) {
   // index route loads view.html
   app.get("/babypicker", function (req, res) {
 
-    
+    if (req.user){
     res.sendFile(path.join(__dirname, "../public/baby-select.html"));
+    } else {
+      res.redirect("/");
+    }
+  });
+  app.get("/addbaby", function (req, res) {
+
+    if (req.user){
+    res.sendFile(path.join(__dirname, "../public/add-baby.html"));
+    } else {
+      res.redirect("/");
+    }
   });
 
+  app.get("/main", function (req, res) {
+
+    if (req.user){
+    
+    res.sendFile(path.join(__dirname, "../public/main.html"));
+    } else{
+      res.redirect("/members");
+    }
+  });
   //**************************************************** */
   // *******sing-in sign-up related routes**************
   //**************************************************** */
