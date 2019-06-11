@@ -64,7 +64,7 @@ function createBabyRowSelector(bbData) {
   function renderBabiesList(rows){
     // babyList.children().not(":last").remove();
     // babyContainer.children(".alert").remove();
-    console.log("TRYING TO FUCKING RENDER");
+   
     if (rows.length > 0) {
         console.log(rows);
         babyList.prepend(rows);
