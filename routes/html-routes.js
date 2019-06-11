@@ -16,7 +16,7 @@ module.exports = function (app) {
   // index route loads view.html
   app.get("/babypicker", function (req, res) {
 
-    var accId = req.params.accid;
+    
     res.sendFile(path.join(__dirname, "../public/baby-select.html"));
   });
 

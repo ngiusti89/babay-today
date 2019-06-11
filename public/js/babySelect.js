@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var url = window.location.search;
     var accid;
-    var babyList = $("tbody");
+    var babyList = $(".babyRows");
     var babyContainer = $(".baby-container");
   
     if (url.indexOf("?acc_id=") !== -1) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
     
       
 
-});
+
 
 function searchForUserAccount(id){
 $.get("/api/getuser/"+id, function(data){
@@ -49,7 +49,10 @@ function createBabyRowSelector(bbData) {
     console.log(bbData.baby_name)
     var newTr = $("<tr>");
     newTr.data("babe", bbData.id);
-    newTr.append("<td>" + bbData.baby_name + "</td>");
+    var newTd = $("<td>");
+    newTd.text(bbData.baby_name);
+    newTd.appendTo(newTr)
+    
     // if (bbData.Posts) {
     //   newTr.append("<td> " + bbData.Posts.length + "</td>");
     // } else {
@@ -66,8 +69,8 @@ function createBabyRowSelector(bbData) {
     // babyContainer.children(".alert").remove();
    
     if (rows.length > 0) {
-        console.log(rows);
-        babyList.prepend(rows);
+        console.log(rows + babyList);
+        babyList.append(rows);
         // babyContainer.append(babyList);
       }
       else {
@@ -81,3 +84,11 @@ function createBabyRowSelector(bbData) {
     alertDiv.text("You must create a BABY (again).");
     babyContainer.append(alertDiv);
   }
+
+
+
+
+
+
+
+});
