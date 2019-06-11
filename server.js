@@ -4,7 +4,6 @@ var express = require('express');
 var session = require('express-session');
 var passport = require('passport');
 var Sequelize = require('sequelize');
-var User = require('./models')['Users'];
 var expressHandlebars = require('express-handlebars');
 var app = express();
 
@@ -19,25 +18,21 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-// app.set('views', './views')
-// app.engine('hbs', exphbs({ extname: '.hbs' }));
-// app.set('view engine', '.hbs');
-
 app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 
-app.get('/', function (req, res) {
-    res.send('Welcome to Passport with Sequelize');
-});
+// app.get('/', function (req, res) {
+//     res.send('Welcome to Passport with Sequelize');
+// });
 
 //Models
 var models = require("./models");
 
 //Routes
-var authRoute = require('./routes/auth.js')(app, passport);
-
-
+require('./routes/auth.js')(app, passport);
+ require('./routes/api-routes.js')(app);
+ require('./routes/html-routes.js')(app);
 // Static directory
 app.use(express.static("public"));
 

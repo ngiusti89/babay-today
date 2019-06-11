@@ -8,7 +8,8 @@ var Baby = sequelize.define("Baby", {
         }
     },
     baby_img_url: DataTypes.STRING,
-    account_id: DataTypes.STRING,
+    account_id: DataTypes.STRING
+    // createdAt: DataTypes.DATETIME
 });
 
 return Baby;
