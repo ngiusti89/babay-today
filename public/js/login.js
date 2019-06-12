@@ -30,9 +30,14 @@ $(document).ready(function() {
     }).then(function(data) {
       window.location.replace(data);
       // If there's an error, log the error
-    }).catch(function(err) {
-      console.log(err);
-    });
+    }).catch(handleLoginErr);
+  }
+
+  function handleLoginErr(err) {
+    console.log("TCL: handleLoginErr -> err", err)
+
+    $("#alert .msg").text(err.responseJSON);
+    $("#alert").fadeIn(500);
   }
 
 });
