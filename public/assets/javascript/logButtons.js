@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
-    // Log buttons
+    // Buttons to log events
     // food
     $('#food').on('click', function () {
+        // gets current time
         var foodTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
             month: 'numeric',
@@ -12,13 +13,10 @@ $(document).ready(function () {
         });
         console.log(foodTime);
 
-        // document.getElementById("foodOptions").innerHTML = "food options";
+        // creates div for logging options (quick log vs manual)
         var foodDiv = document.createElement('div');
         foodDiv.textContent = "food options";
-        foodDiv.style.backgroundColor = "red";
         foodOptions.appendChild(foodDiv);
-        
-
 
         // TODO: post food timestamp
         // $.post("/api/food", foodTime, function (data) {
@@ -38,7 +36,9 @@ $(document).ready(function () {
         });
         console.log(changeTime);
 
-        document.getElementById("changeOptions").innerHTML = "change options";
+        var changeDiv = document.createElement('div');
+        changeDiv.textContent = "change options";
+        changeOptions.appendChild(changeDiv);
 
         // TODO: post change timestamp
         // $.post("/api/change", changeTime, function (data) {
@@ -59,7 +59,9 @@ $(document).ready(function () {
         });
         console.log(sleepTime);
 
-        document.getElementById("sleepOptions").innerHTML = "sleep options";
+        var sleepDiv = document.createElement('div');
+        sleepDiv.textContent = "food options";
+        sleepOptions.appendChild(sleepDiv);
 
         // TODO: post sleep timestamp
         // $.post("/api/sleep", sleepTime, function (data) {
