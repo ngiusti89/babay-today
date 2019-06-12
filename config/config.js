@@ -1,10 +1,10 @@
 require("dotenv").config();
 exports.dbConfig = {
   development: {
-    "username": "root",
-    "password": "Dr1nk1ng!",
-    "database": "babyblogger",
-    "host": "127.0.0.1",
+    username: process.env.DEVELOPMENT_USERNAME,
+    password: process.env.DEVELOPMENT_PASSWORD,
+    database: process.env.DEVELOPMENT_DB,
+    host: process.env.DEVELOPMENT_HOST,
     "port": 3306,
     "dialect": "mysql"
   },
