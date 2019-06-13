@@ -31,6 +31,7 @@ $(document).ready(function () {
     //id should be for account. get all babies associated. 
 
     $.get("/api/getbabies", function (data) {
+      console.log("TCL: getBabyData -> data", data)
       if (data) {
         console.log("found a baby");
         var rowsToAdd = [];

@@ -20,6 +20,11 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/baby-select.html"));
   });
 
+  app.get("/addbaby", function(request, response){
+    var parentID = request.params.accid;
+    response.sendFile(path.join(__dirname, "../public/add-baby.html"));
+  });
+
   //**************************************************** */
   // *******sing-in sign-up related routes**************
   //**************************************************** */
@@ -33,6 +38,14 @@ module.exports = function (app) {
   });
 
   app.get("/login", function (req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/baby-select");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  app.get("/signup", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
