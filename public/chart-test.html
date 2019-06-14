@@ -13,7 +13,11 @@
     <!-- font awesome -->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
         integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-        <script src="https://kit.fontawesome.com/7af90b3384.js"></script>
+    <script src="https://kit.fontawesome.com/7af90b3384.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <!-- css -->
     <link rel="stylesheet" href="../public/assets/css/style.css">
     <title>Baby Log Home</title>
@@ -44,7 +48,8 @@
                         <a class="nav-link" href="/main" id="main"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/babypicker" id="baby-select"><i class="fas fa-baby fa-fw"></i>Select Baby</a>
+                        <a class="nav-link" href="/babypicker" id="baby-select"><i class="fas fa-baby fa-fw"></i>Select
+                            Baby</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
@@ -65,8 +70,10 @@
 
     <br>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
-    
+    <div class="col-md-10 mx-auto" style="height: 300px">
+            <canvas id="myChart"></canvas>
+          </div>
+
 
     <!-- log buttons -->
     <div class="container" id="log-buttons">
@@ -80,8 +87,9 @@
 
 
 
+    <!-- chart.js -->
+    <script src="js/charts.js" type="text/javascript"></script>
 
-    
 
     <!-- buttons js -->
     <script src="../public/assets/javascript/buttons.js"></script>
