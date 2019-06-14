@@ -42,7 +42,7 @@ h4 {
     line-height: 3em;
 }
 
-#foodQuickLog, #changeQuickLog, #sleepQuickLog {
+#foodQuickLog, #changeQuickLog, #sleepQuickLog, #foodDetailedLog, #changeDetailedLog, #sleepDetailedLog {
     margin: 10px;
     line-height: 3em;
 }
