@@ -77,7 +77,8 @@ $(document).ready(function () {
 
     });
 
-    $('#sleepQuickLog').on('click', function () {
+    $('#sleepQuickLog').live('click', function () {
+        console.log("sleep quick log clicked");
         var sleepTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
             month: 'numeric',
