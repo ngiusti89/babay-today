@@ -21,29 +21,43 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/getbabies", function(req, res) {
-      if (req.user){
-    db.Baby.findAll({
-      where: {
-        account_id: req.user.id
-      },
-    }).then(function(dbd) {
-      console.log("Found " + dbd);
-      res.json(dbd);
-    });
-  } else {
-    res.redirect("/login");
-  }
+  app.get("/api/getbabies", function (req, res) {
+    if (req.user) {
+      db.Baby.findAll({
+        where: {
+          account_id: req.user.id
+        },
+      }).then(function (dbd) {
+        console.log("Found " + dbd);
+        res.json(dbd);
+      });
+    } else {
+      res.redirect("/login");
+    }
+  });
+
+  app.post("/api/addbaby", function(request, response){
+  console.log("TCL: request", request)
+    if(request.user){
+      db.Baby.create({
+        baby_name: request.body.babyName,
+        baby_birthday: request.body.babyBirthday,
+        account_id: request.user
+      })
+      .then(function(dbBaby){
+        response.json(dbBaby);
+      });
+    }
   });
 
 
-  app.get("/api/getuser/:id", function(req, res) {
+  app.get("/api/getuser/:id", function (req, res) {
     console.log("Trying get with account id" + req.params.id)
     db.User.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbd) {
+    }).then(function (dbd) {
       res.json(dbd);
     });
   });
