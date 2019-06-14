@@ -2,26 +2,15 @@ $(document).ready(function () {
 
     // Buttons to log events
     // food
-    $('#food').on('click', function () {
-        // gets current time
-        var foodTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(foodTime);
-
-        // creates div for logging options (quick log vs manual)
+    $('#food').click(function () {
+        // creates new div logging menu options
         var foodDiv = document.createElement('div');
-
         var quickLog = document.createElement('button');
         quickLog.innerHTML = "Quick Log";
         quickLog.setAttribute("class", "btn btn-lg")
+        quickLog.setAttribute("id", "foodQuickLog");
         foodOptions.appendChild(quickLog);
         quickLog.appendChild(foodDiv);
-
 
         // TODO: post food timestamp
         // $.post("/api/food", foodTime, function (data) {
@@ -31,21 +20,13 @@ $(document).ready(function () {
     });
 
     // change
-    $('#change').on('click', function () {
-        var changeTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(changeTime);
+    $('#change').click(function () {
 
         var changeDiv = document.createElement('div');
-
         var quickLog = document.createElement('button');
         quickLog.innerHTML = "Quick Log";
         quickLog.setAttribute("class", "btn btn-lg")
+        quickLog.setAttribute("id", "changeQuickLog");
         changeOptions.appendChild(quickLog);
         quickLog.appendChild(changeDiv);
 
@@ -54,15 +35,12 @@ $(document).ready(function () {
         // $("")
 
         // });
-
     });
 
     // sleep
-    $('#sleep').on('click', function () {
-
+    $('#sleep').click(function () {
 
         var sleepDiv = document.createElement('div');
-
         var quickLog = document.createElement('button');
         quickLog.innerHTML = "Quick Log";
         quickLog.setAttribute("class", "btn btn-lg")
@@ -74,10 +52,9 @@ $(document).ready(function () {
         // $.post("/api/sleep", sleepTime, function (data) {
         // $("")
         // });
-
     });
 
-    $('#sleepQuickLog').live('click', function () {
+    $('body').on('click', '#sleepQuickLog', function () {
         console.log("sleep quick log clicked");
         var sleepTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
@@ -87,6 +64,30 @@ $(document).ready(function () {
             minute: '2-digit',
         });
         console.log(sleepTime);
+    });
+
+    $('body').on('click', '#changeQuickLog', function () {
+        console.log("change quick log clicked");
+        var changeTime = new Date().toLocaleString(undefined, {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        console.log(changeTime);
+    });
+
+    $('body').on('click', '#foodQuickLog', function () {
+        console.log("food quick log clicked");
+        var foodTime = new Date().toLocaleString(undefined, {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        console.log(foodTime);
     });
 
 });
