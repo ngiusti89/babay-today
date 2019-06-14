@@ -16,30 +16,15 @@ module.exports = function (app) {
   // index route loads view.html
   app.get("/babypicker", function (req, res) {
 
-    if (req.user){
+    var accId = req.params.accid;
     res.sendFile(path.join(__dirname, "../public/baby-select.html"));
-    } else {
-      res.redirect("/");
-    }
-  });
-  app.get("/addbaby", function (req, res) {
-
-    if (req.user){
-    res.sendFile(path.join(__dirname, "../public/add-baby.html"));
-    } else {
-      res.redirect("/");
-    }
   });
 
-  app.get("/main", function (req, res) {
-
-    if (req.user){
-    
-    res.sendFile(path.join(__dirname, "../public/main.html"));
-    } else{
-      res.redirect("/members");
-    }
+  app.get("/addbaby", function(request, response){
+    var parentID = request.params.accid;
+    response.sendFile(path.join(__dirname, "../public/add-baby.html"));
   });
+
   //**************************************************** */
   // *******sing-in sign-up related routes**************
   //**************************************************** */
@@ -47,7 +32,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/baby-select");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -55,15 +40,23 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/baby-select");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  app.get("/signup", function (req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/baby-select");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+  app.get("/baby-select", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/baby-select.html"));
   });
 
   /************singup/signin realted routes are done******* */
