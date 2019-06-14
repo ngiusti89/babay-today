@@ -20,39 +20,39 @@ $(document).ready(function () {
     // });
 
     // change
-    $('#change').click(function () {
+    // $('#change').click(function () {
 
-        var changeDiv = document.createElement('div');
-        var quickLog = document.createElement('button');
-        quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
-        quickLog.setAttribute("class", "btn btn-lg btn-secondary")
-        quickLog.setAttribute("id", "changeQuickLog");
-        changeOptions.appendChild(quickLog);
-        quickLog.appendChild(changeDiv);
+    //     var changeDiv = document.createElement('div');
+    //     var quickLog = document.createElement('button');
+    //     quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
+    //     quickLog.setAttribute("class", "btn btn-lg btn-secondary")
+    //     quickLog.setAttribute("id", "changeQuickLog");
+    //     changeOptions.appendChild(quickLog);
+    //     quickLog.appendChild(changeDiv);
 
-        // TODO: post change timestamp
-        // $.post("/api/change", changeTime, function (data) {
-        // $("")
+    //     // TODO: post change timestamp
+    //     // $.post("/api/change", changeTime, function (data) {
+    //     // $("")
 
-        // });
-    });
+    //     // });
+    // });
 
     // sleep
-    $('#sleep').click(function () {
+    // $('#sleep').click(function () {
 
-        var sleepDiv = document.createElement('div');
-        var quickLog = document.createElement('button');
-        quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
-        quickLog.setAttribute("class", "btn btn-lg btn-secondary")
-        quickLog.setAttribute("id", "sleepQuickLog");
-        sleepOptions.appendChild(quickLog);
-        quickLog.appendChild(sleepDiv);
+    //     var sleepDiv = document.createElement('div');
+    //     var quickLog = document.createElement('button');
+    //     quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
+    //     quickLog.setAttribute("class", "btn btn-lg btn-secondary")
+    //     quickLog.setAttribute("id", "sleepQuickLog");
+    //     sleepOptions.appendChild(quickLog);
+    //     quickLog.appendChild(sleepDiv);
 
-        // TODO: post sleep timestamp
-        // $.post("/api/sleep", sleepTime, function (data) {
-        // $("")
-        // });
-    });
+    //     // TODO: post sleep timestamp
+    //     // $.post("/api/sleep", sleepTime, function (data) {
+    //     // $("")
+    //     // });
+    // });
 
     $('body').on('click', '#sleepQuickLog', function () {
         console.log("sleep quick log clicked");

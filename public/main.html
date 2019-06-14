@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- detailed food log options -->
         <div id="foodDetails" class="collapse">
             <div class="row">
                 <div class="col text-center">
@@ -126,8 +126,6 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
 
         <!-- change -->
@@ -139,12 +137,45 @@
                 <div class="col text-center">
                     <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i
                             class="far fa-clock fa-fw fa-lg"></i> Log Change</button>
-                    <button type="button" class="btn btn-lg btn-dark" id="changeDetailedLog"><i
-                            class="fas fa-history fa-fw fa-lg"></i> Detail Log</button>
+                    <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse"
+                        data-target="#changeDetails" id="changeDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i>
+                        Detail Log</button>
                 </div>
             </div>
         </div>
-
+        <!-- detailed change log options -->
+        <div id="changeDetails" class="collapse">
+            <div class="row">
+                <div class="col text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Type</th>
+                                <th>notes?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                                        id="changeDetailTime">
+                                </td>
+                                <td>
+                                    <select class="form-control-lg" id="foodType">
+                                        <option selected="">Wet</option>
+                                        <option>Solids</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="changeNotes" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <!-- sleep -->
         <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#sleepOptions" id="sleep"><i class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
