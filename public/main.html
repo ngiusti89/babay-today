@@ -13,7 +13,7 @@
     <!-- font awesome -->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
         integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-        <script src="https://kit.fontawesome.com/7af90b3384.js"></script>
+    <script src="https://kit.fontawesome.com/7af90b3384.js"></script>
     <!-- css -->
     <link rel="stylesheet" href="../public/assets/css/style.css">
     <title>Baby Log Home</title>
@@ -44,7 +44,8 @@
                         <a class="nav-link" href="/main" id="main"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/babypicker" id="baby-select"><i class="fas fa-baby fa-fw"></i>Select Baby</a>
+                        <a class="nav-link" href="/babypicker" id="baby-select"><i class="fas fa-baby fa-fw"></i>Select
+                            Baby</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
@@ -67,18 +68,27 @@
 
     <!-- log buttons -->
     <div class="container" id="log-buttons">
-        <button type="button" class="btn btn-success btn-lg btn-block logButton" id="food"><i
-                class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
-        <div id="foodOptions"></div>
-        <button type="button" class="btn btn-warning btn-lg btn-block logButton" id="change"><i
-                class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
-        <div id="changeOptions"></div>
-        <button type="button" class="btn btn-primary btn-lg btn-block logButton" id="sleep"><i
-                class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
-        <div id="sleepOptions"></div>
+        <button type="button" class="btn btn-success btn-lg btn-block logButton" data-toggle="collapse"
+            data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
+
+        <div id="foodOptions" class="collapse">
+            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+        </div>
+
+        <button type="button" class="btn btn-warning btn-lg btn-block logButton" data-toggle="collapse"
+            data-target="#changeOptions" id="change"><i class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
+
+        <div id="changeOptions" class="collapse">
+            <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
+            data-target="#sleepOptions" id="sleep"><i class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
+
+        <div id="sleepOptions" class="collapse">
+            <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+        </div>
     </div>
-
-
 
 
     <!-- members js -->
@@ -89,7 +99,7 @@
 
     <!-- log buttons js -->
     <script src="../public/assets/javascript/logButtons.js"></script>
-    
+
 
 </body>
 
