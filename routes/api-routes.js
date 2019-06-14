@@ -14,13 +14,25 @@ var passport = require("../config/passport");
 module.exports = function (app) {
 
   // GET route for getting all of the todos
-  app.get("/users", function (req, res) {
+  app.post("/api/quicklog", function(request, response){
+    
+      if(request.user){
+        db.Event.create({
+          event_type_name: request.body.eventName,
+          baby_id: request.body.babyId
+          
+        })
+        .then(function(dbBaby){
+          response.json(dbBaby);
+        });
+      }
+    });
+  app.post("/users", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.User.findAll({}).then(function (dbd) {
       res.json(dbd);
     });
   });
-
   app.get("/api/getbabies", function (req, res) {
     if (req.user) {
       db.Baby.findAll({
@@ -51,6 +63,17 @@ module.exports = function (app) {
     }
   });
 
+  app.get("/api/getbaby/:id", function (req, res) {
+    console.log("Trying get with baby id" + req.params.id)
+    db.Baby.findOne({
+      where: {
+        id: req.params.id,
+        account_id: req.user.id
+      }
+    }).then(function (dbd) {
+      res.json(dbd);
+    });
+  });
 
   app.get("/api/getuser/:id", function (req, res) {
     console.log("Trying get with account id" + req.params.id)

@@ -40,7 +40,7 @@ $(document).ready(function () {
     var babySelector = $("<td>");
     babySelector.addClass("babySelector")
     babySelector.data("id", bbData.id)
-    var babyText = $('<a href="/main?baby-id=' + bbData.id + 'git pu">View Baby</a>');
+    var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
     babyText.addClass("babyLink");
     babyText.appendTo(babySelector);
     babySelector.appendTo(newTr);   

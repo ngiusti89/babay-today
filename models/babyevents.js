@@ -7,9 +7,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        created_at: DataTypes.DATE,
-        baby_id: DataTypes.INTEGER,
-        account_id: DataTypes.INTEGER
+        baby_id: DataTypes.INTEGER
     });
     
     return Event;
