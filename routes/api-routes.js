@@ -41,6 +41,7 @@ module.exports = function (app) {
     if(request.user){
       db.Baby.create({
         baby_name: request.body.babyName,
+        baby_gender: request.body.babyGender,
         baby_birthday: request.body.babyBirthday,
         account_id: request.user.id
       })
