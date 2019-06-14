@@ -13,7 +13,7 @@ exports.dbConfig = {
     password: process.env.TEST_PASSWORD,
     database: process.env.TEST_DB,
     host: process.env.TEST_PASSWORD,
-    port: 3306,
+    port: 8889,
     dialect: "mysql"
   },
   production: {
@@ -21,7 +21,7 @@ exports.dbConfig = {
     password: process.env.PRODUCTION_PASSWORD,
     database: process.env.PRODUCTION_DB,
     host: process.env.PRODUCTION_PASSWORD,
-    port: 3306,
+    port: 8889,
     dialect: "mysql"
   }
 };
