@@ -3,11 +3,16 @@ $(document).ready(function () {
     $(document).on('click', '.addBabyBtn', function(){
         event.preventDefault();
         var babyName = $('#babyName').val().trim();
-        console.log("TCL: babyName", babyName)
         var babyGender = $('.babyGender').val();
-        console.log("TCL: babyGender", babyGender)
-        var babybirthday = $('#babyBday').val().trim();
-        console.log("TCL: babybirthday", babybirthday)
+        var babyBirthday = $('#babyBday').val().trim();
+        $.post('/api/addbaby', {
+            babyName : babyName,
+            babyGender: babyGender,
+            babyBirthday : babyBirthday
+        }).then(function(data){
+            console.log(data);
+            window.location.href = "/babypicker";
+        })
         
     });
 
