@@ -1,4 +1,7 @@
+
+
 $(document).ready(function () {
+
   var babyList = $(".babyRows");
   var babyContainer = $(".baby-container");
 
@@ -28,10 +31,16 @@ $(document).ready(function () {
     var babyNameTD = $("<td>");
     babyNameTD.text(bbData.baby_name);
     babyNameTD.appendTo(newTr)
+    var babyAgeTD = $("<td>");
+    babyAgeTD.text(moment(bbData.baby_birthday).format("YYYY/MM/YY"));
+    babyAgeTD.appendTo(newTr)
+    var babyAgeLU = $("<td>");
+    babyAgeLU.text(moment(bbData.updatedAt).format("YYYY/MM/YY"));
+    babyAgeLU.appendTo(newTr)
     var babySelector = $("<td>");
     babySelector.addClass("babySelector")
     babySelector.data("id", bbData.id)
-    var babyText = $('<a href="/main?baby-id=' + bbData.id + '">GoTo</a>');
+    var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
     babyText.addClass("babyLink");
     babyText.appendTo(babySelector);
     babySelector.appendTo(newTr);   
@@ -63,6 +72,6 @@ $(document).ready(function () {
 
 
 
-
+  
 
 });

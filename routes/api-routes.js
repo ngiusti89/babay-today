@@ -37,12 +37,13 @@ module.exports = function (app) {
   });
 
   app.post("/api/addbaby", function(request, response){
-  console.log("TCL: request", request)
+  console.log("TCL: request", request.user.id)
     if(request.user){
       db.Baby.create({
         baby_name: request.body.babyName,
+        baby_gender: request.body.babyGender,
         baby_birthday: request.body.babyBirthday,
-        account_id: request.user
+        account_id: request.user.id
       })
       .then(function(dbBaby){
         response.json(dbBaby);

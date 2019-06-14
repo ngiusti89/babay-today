@@ -6,8 +6,8 @@ $(document).ready(function () {
         // creates new div logging menu options
         var foodDiv = document.createElement('div');
         var quickLog = document.createElement('button');
-        quickLog.innerHTML = "Quick Log";
-        quickLog.setAttribute("class", "btn btn-lg")
+        quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
+        quickLog.setAttribute("class", "btn btn-lg btn-secondary")
         quickLog.setAttribute("id", "foodQuickLog");
         foodOptions.appendChild(quickLog);
         quickLog.appendChild(foodDiv);
@@ -24,8 +24,8 @@ $(document).ready(function () {
 
         var changeDiv = document.createElement('div');
         var quickLog = document.createElement('button');
-        quickLog.innerHTML = "Quick Log";
-        quickLog.setAttribute("class", "btn btn-lg")
+        quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
+        quickLog.setAttribute("class", "btn btn-lg btn-secondary")
         quickLog.setAttribute("id", "changeQuickLog");
         changeOptions.appendChild(quickLog);
         quickLog.appendChild(changeDiv);
@@ -42,8 +42,8 @@ $(document).ready(function () {
 
         var sleepDiv = document.createElement('div');
         var quickLog = document.createElement('button');
-        quickLog.innerHTML = "Quick Log";
-        quickLog.setAttribute("class", "btn btn-lg")
+        quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
+        quickLog.setAttribute("class", "btn btn-lg btn-secondary")
         quickLog.setAttribute("id", "sleepQuickLog");
         sleepOptions.appendChild(quickLog);
         quickLog.appendChild(sleepDiv);
