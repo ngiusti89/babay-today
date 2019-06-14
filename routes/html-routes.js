@@ -15,14 +15,32 @@ module.exports = function (app) {
 
   // index route loads view.html
   app.get("/babypicker", function (req, res) {
-
-    var accId = req.params.accid;
-    res.sendFile(path.join(__dirname, "../public/baby-select.html"));
+    if (req.user) {
+      res.redirect("/baby-select");
+      return;
+    }
+    
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/addbaby", function(request, response){
-    var parentID = request.params.accid;
-    response.sendFile(path.join(__dirname, "../public/add-baby.html"));
+  app.get("/main", function (req, res) {
+
+    if (req.user) {
+      res.sendFile(path.join(__dirname, "../public/main.html"));
+      return;
+    } 
+  
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+    
+  });
+
+  app.get("/addbaby", function(req, res){
+
+    if (req.user) {
+      res.redirect("/add-baby.html");
+      return;
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   //**************************************************** */
@@ -33,6 +51,7 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -41,14 +60,16 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   app.get("/signup", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });

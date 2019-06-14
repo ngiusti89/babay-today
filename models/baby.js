@@ -15,7 +15,8 @@ var Baby = sequelize.define("Baby", {
         }
     },
     baby_img_url: DataTypes.STRING,
-    account_id: DataTypes.INTEGER
+    account_id: DataTypes.INTEGER,    
+    gender: DataTypes.STRING
     // createdAt: DataTypes.DATETIME
 });
 
