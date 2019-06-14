@@ -24,7 +24,17 @@ $(document).ready(function () {
     });
   }
 
+  function getBabyAge(bbData){
+    babyBirthday = bbData.baby_birthday;
+    console.log("TCL: getBabyAge -> babyBirthday", babyBirthday)
+    ageMonths = moment().diff(moment(babyBirthday), 'months');
+    console.log("TCL: getBabyAge -> ageMonths", ageMonths)
+    
+  }
+
+
   function createBabyRowSelector(bbData) {
+    getBabyAge(bbData);
     console.log(bbData.baby_name)
     var newTr = $("<tr>");
     newTr.data("babe", bbData.id);
@@ -32,7 +42,7 @@ $(document).ready(function () {
     babyNameTD.text(bbData.baby_name);
     babyNameTD.appendTo(newTr)
     var babyAgeTD = $("<td>");
-    babyAgeTD.text(moment(bbData.baby_birthday).format("YYYY/MM/DD"));
+    babyAgeTD.text(moment().diff(bbData.baby_birthday, 'months')+ ' Months');
     babyAgeTD.appendTo(newTr)
     var babyAgeLU = $("<td>");
     babyAgeLU.text(moment(bbData.updatedAt).format("YYYY/MM/DD"));
