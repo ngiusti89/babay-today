@@ -14,19 +14,34 @@ var passport = require("../config/passport");
 module.exports = function (app) {
 
   // GET route for getting all of the todos
-  app.post("/api/quicklog", function(request, response){
-    
-      if(request.user){
-        db.Event.create({
-          event_type_name: request.body.eventName,
-          baby_id: request.body.babyId
-          
-        })
-        .then(function(dbBaby){
+  app.post("/api/quicklog", function (request, response) {
+
+    if (request.user) {
+      db.Event.create({
+        event_type_name: request.body.eventName,
+        baby_id: request.body.babyId
+
+      })
+        .then(function (dbBaby) {
           response.json(dbBaby);
         });
-      }
-    });
+    }
+  });
+
+  app.post('/api/quicklog/feedStarted', function (request, response ){
+    if(request.user){
+      db.EventDetail.create({
+        event_type_key: request.body.eventId,
+        string_value: request.body.typeOfFeeding,
+        integer_value: request.body.howManyOz,
+        time_started_bool: request.body.timeStarted,
+      })
+      .then(function(data){
+        response.json(data);
+      })
+    }
+  });
+
   app.post("/users", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.User.findAll({}).then(function (dbd) {
@@ -48,18 +63,18 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/api/addbaby", function(request, response){
-  console.log("TCL: request", request.user.id)
-    if(request.user){
+  app.post("/api/addbaby", function (request, response) {
+    console.log("TCL: request", request.user.id)
+    if (request.user) {
       db.Baby.create({
         baby_name: request.body.babyName,
         baby_gender: request.body.babyGender,
         baby_birthday: request.body.babyBirthday,
         account_id: request.user.id
       })
-      .then(function(dbBaby){
-        response.json(dbBaby);
-      });
+        .then(function (dbBaby) {
+          response.json(dbBaby);
+        });
     }
   });
 
@@ -107,7 +122,7 @@ module.exports = function (app) {
       res.redirect(307, "/api/login");
     }).catch(function (err) {
       console.log(err);
-      res.json(err);
+      res.json(422, err);
       // res.status(422).json(err.errors[0].message);
     });
   });
@@ -115,7 +130,7 @@ module.exports = function (app) {
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/login");
+    res.redirect(307, "/login");
   });
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
