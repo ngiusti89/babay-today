@@ -24,19 +24,31 @@ module.exports = function (app) {
   });
 
   app.get("/main", function (req, res) {
+
     if (req.user) {
+<<<<<<< HEAD
       res.redirect("/main");
       return;
     }
     
+=======
+      res.sendFile(path.join(__dirname, "../public/main.html"));
+      return;
+    } 
+>>>>>>> 5e5cc9831dcd8673dfeba165c00a1408213397a0
   
     res.sendFile(path.join(__dirname, "../public/login.html"));
+    
   });
 
   app.get("/addbaby", function(req, res){
 
     if (req.user) {
+<<<<<<< HEAD
       res.redirect("/add-baby");
+=======
+      res.redirect("/add-baby.html");
+>>>>>>> 5e5cc9831dcd8673dfeba165c00a1408213397a0
       return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
@@ -50,6 +62,7 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -58,6 +71,7 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
@@ -66,6 +80,7 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
