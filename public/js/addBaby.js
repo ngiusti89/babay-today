@@ -6,8 +6,15 @@ $(document).ready(function () {
         console.log("TCL: babyName", babyName)
         var babyGender = $('.babyGender').val();
         console.log("TCL: babyGender", babyGender)
-        var babybirthday = $('#babyBday').val().trim();
-        console.log("TCL: babybirthday", babybirthday)
+        var babyBirthday = $('#babyBday').val().trim();
+        console.log("TCL: babybirthday", babyBirthday)
+        $.post('/api/addbaby', {
+            babyName : babyName,
+            babyBirthday : babyBirthday
+        }).then(function(data){
+            console.log(data);
+            window.location.href = "/babypicker";
+        })
         
     });
 
