@@ -5,7 +5,7 @@ exports.dbConfig = {
     password: process.env.DEVELOPMENT_PASSWORD,
     database: process.env.DEVELOPMENT_DB,
     host: process.env.DEVELOPMENT_HOST,
-    port : 3306,
+    port: 3306,
     dialect: "mysql"
   },
   test: {

@@ -15,14 +15,28 @@ module.exports = function (app) {
 
   // index route loads view.html
   app.get("/babypicker", function (req, res) {
+    if (req.user) {
+      res.redirect("/baby-select");
+    }
+    
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
 
-    var accId = req.params.accid;
-    res.sendFile(path.join(__dirname, "../public/baby-select.html"));
+  app.get("/main", function (req, res) {
+    if (req.user) {
+      res.redirect("/main");
+    }
+    
+  
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   app.get("/addbaby", function(request, response){
-    var parentID = request.params.accid;
-    response.sendFile(path.join(__dirname, "../public/add-baby.html"));
+
+    if (req.user) {
+      res.redirect("/add-baby");
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   //**************************************************** */
@@ -42,7 +56,7 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/baby-select");
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   app.get("/signup", function (req, res) {
