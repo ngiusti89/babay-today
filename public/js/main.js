@@ -1,34 +1,13 @@
 $(document).ready(function () {
 
-    // Buttons to log events
-    // food
-    // $('#food').click(function () {
+    var urlParm = getUrlParameter("baby-id");
+    $.get("/api/getbaby/"+urlParm, function (data) {
+        console.log("TCL: getBabyData -> data", data)
+        if (data) {
+            $("#babyNameAge").text(data.baby_name + " - AGE");
+        }
+    });
 
-    //     // TODO: post food timestamp
-    //     // $.post("/api/food", foodTime, function (data) {
-    //     // $("")
-    //     // });
-
-    // });
-
-    // change
-    // $('#change').click(function () {
-
-    //     // TODO: post change timestamp
-    //     // $.post("/api/change", changeTime, function (data) {
-    //     // $("")
-
-    //     // });
-    // });
-
-    // sleep
-    // $('#sleep').click(function () {
-
-    //     // TODO: post sleep timestamp
-    //     // $.post("/api/sleep", sleepTime, function (data) {
-    //     // $("")
-    //     // });
-    // });
 
     $('body').on('click', '#sleepQuickLog', function () {
         console.log("sleep quick log clicked");
@@ -65,5 +44,10 @@ $(document).ready(function () {
         });
         console.log(foodTime);
     });
-
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
 });
