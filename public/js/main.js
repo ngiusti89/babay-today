@@ -4,9 +4,19 @@ $(document).ready(function () {
     $.get("/api/getbaby/"+urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
-            $("#babyNameAge").text(data.baby_name + " - AGE");
+            $("#babyNameAge").text(data.baby_name + " - " + getBabyAge(data));
         }
     });
+
+    function getBabyAge(data){
+    babyBirthday = data.baby_birthday;
+    if(moment().diff(moment(babyBirthday), 'months')>30){
+      return moment().diff(moment(babyBirthday), 'years') + ' years';
+    }else{
+      return moment().diff(moment(babyBirthday), 'months') + ' months';
+    }
+  }
+
 
 
     $('body').on('click', '#sleepQuickLog', function () {
