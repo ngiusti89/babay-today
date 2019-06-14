@@ -1,58 +1,13 @@
 $(document).ready(function () {
+    
+    var urlParm = getUrlParameter("baby-id");
+    $.get("/api/getbaby/"+urlParm, function (data) {
+        console.log("TCL: getBabyData -> data", data)
+        if (data) {
+            $("#babyNameAge").text(data.baby_name + " - AGE");
+        }
+    });
 
-    // Buttons to log events
-    // food
-    // $('#food').click(function () {
-    //     // creates new div logging menu options
-    //     var foodDiv = document.createElement('div');
-    //     var quickLog = document.createElement('button');
-    //     quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
-    //     quickLog.setAttribute("class", "btn btn-lg btn-secondary")
-    //     quickLog.setAttribute("id", "foodQuickLog");
-    //     foodOptions.appendChild(quickLog);
-    //     quickLog.appendChild(foodDiv);
-
-    //     // TODO: post food timestamp
-    //     // $.post("/api/food", foodTime, function (data) {
-    //     // $("")
-    //     // });
-
-    // });
-
-    // change
-    // $('#change').click(function () {
-
-    //     var changeDiv = document.createElement('div');
-    //     var quickLog = document.createElement('button');
-    //     quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
-    //     quickLog.setAttribute("class", "btn btn-lg btn-secondary")
-    //     quickLog.setAttribute("id", "changeQuickLog");
-    //     changeOptions.appendChild(quickLog);
-    //     quickLog.appendChild(changeDiv);
-
-    //     // TODO: post change timestamp
-    //     // $.post("/api/change", changeTime, function (data) {
-    //     // $("")
-
-    //     // });
-    // });
-
-    // sleep
-    // $('#sleep').click(function () {
-
-    //     var sleepDiv = document.createElement('div');
-    //     var quickLog = document.createElement('button');
-    //     quickLog.innerHTML = "<i class='far fa-clock'></i> Quick Log";
-    //     quickLog.setAttribute("class", "btn btn-lg btn-secondary")
-    //     quickLog.setAttribute("id", "sleepQuickLog");
-    //     sleepOptions.appendChild(quickLog);
-    //     quickLog.appendChild(sleepDiv);
-
-    //     // TODO: post sleep timestamp
-    //     // $.post("/api/sleep", sleepTime, function (data) {
-    //     // $("")
-    //     // });
-    // });
 
     $('body').on('click', '#sleepQuickLog', function () {
         console.log("sleep quick log clicked");
@@ -97,4 +52,10 @@ $(document).ready(function () {
         pickerPosition: "bottom-left"
     });
 
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
 });
