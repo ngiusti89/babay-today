@@ -2,10 +2,14 @@ require("dotenv").config();
 exports.dbConfig = {
   development: {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 79b6f37042cd4a9caf8ee85236f885af49630308
     username: process.env.DEVELOPMENT_USERNAME,
     password: process.env.DEVELOPMENT_PASSWORD,
     database: process.env.DEVELOPMENT_DB,
     host: process.env.DEVELOPMENT_HOST,
+<<<<<<< HEAD
     port: 8889,
     dialect: "mysql"
 =======
@@ -16,6 +20,10 @@ exports.dbConfig = {
     "port": 3306,
     "dialect": "mysql"
 >>>>>>> c106ad51be0cc70abf824e28c53203c9d2479f7e
+=======
+    port : 3306,
+    dialect: "mysql"
+>>>>>>> 79b6f37042cd4a9caf8ee85236f885af49630308
   },
   test: {
     username: process.env.TEST_USERNAME,
