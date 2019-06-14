@@ -17,6 +17,7 @@ module.exports = function (app) {
   app.get("/babypicker", function (req, res) {
     if (req.user) {
       res.redirect("/baby-select");
+      return;
     }
     
     res.sendFile(path.join(__dirname, "../public/login.html"));
@@ -25,16 +26,18 @@ module.exports = function (app) {
   app.get("/main", function (req, res) {
     if (req.user) {
       res.redirect("/main");
+      return;
     }
     
   
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/addbaby", function(request, response){
+  app.get("/addbaby", function(req, res){
 
     if (req.user) {
       res.redirect("/add-baby");
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
