@@ -23,8 +23,7 @@
     <!-- baby photo header -->
     <div class="hero-image">
         <div class="hero-text">
-            <!-- TODO: pull in name, age from user input -->
-            <h1 id="babyNameAge">Babay, [age]</h1>
+            <h1 id="babyNameAge">Babay</h1>
             <p>&nbsp;</p>
         </div>
     </div>
@@ -32,7 +31,6 @@
     <!-- baby main menu -->
     <nav class="navbar mb-4 navbar-expand-lg navbar-light text-white bg-info">
         <div class="container" id="baby-menu">
-            <!-- TODO: pull in name from user input -->
             <h4>Log An Event</h4>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,24 +64,15 @@
             </div>
         </div>
     </nav>
-    <!-- members js -->
-    <script src="../public/js/members.js"></script>
-
-    <!-- baby js
-    <script src="../models/baby.js"></script> -->
-
-    <!-- log buttons js -->
-    <script src="../public/js/main.js"></script>
 
     <br>
-    
 
     <!-- log buttons -->
     <!-- food button -->
     <div class="container" id="log-buttons">
         <button type="button" class="btn btn-success btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
-        <!-- TODO food menu options -->
+        <!-- food menu options -->
         <div id="foodOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
@@ -148,11 +137,10 @@
         <!-- change -->
         <button type="button" class="btn btn-warning btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#changeOptions" id="change"><i class="fas fa-baby fa-fw fa-lg"></i>Change</button>
-        <!-- TODO change menu options -->
+        <!-- change menu options -->
         <div id="changeOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
-                    <!-- ? incorporate this -->
                     <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDry"><i
                             class='far fa-smile-beam'></i> Dry</button>
                     <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogWet"><i
@@ -207,7 +195,7 @@
         <!-- sleep -->
         <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#sleepOptions" id="sleep"><i class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
-        <!-- TODOD sleep menu options -->
+        <!-- sleep menu options -->
         <div id="sleepOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
