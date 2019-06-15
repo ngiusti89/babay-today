@@ -107,10 +107,6 @@ app.get("/api/getevents/:id", function (req, res) {
   }
 });
 
-
-
-
-
   app.post("/api/addbaby", function (request, response) {
     console.log("TCL: request", request.user.id)
     if (request.user) {
