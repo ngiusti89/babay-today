@@ -31,11 +31,25 @@ $(document).ready(function () {
         console.log(sleepTime);
     });
 
-    $('body').on('click', '#changeQuickLog', function () {
+    // $('body').on('click', '#changeQuickLogWet', function () {
+    //     event.preventDefault();
+    //     postTheEvent("Diaper Change", 'Wet');
+    // });
+    // $('body').on('click', '#changeQuickLogDry', function () {
+    //     event.preventDefault();
+    //     postTheEvent("Diaper Change", 'Dry');
+    // });
+    // $('body').on('click', '#changeQuickLogDirty', function () {
+    //     event.preventDefault();
+    //     postTheEvent("Diaper Change", 'Dirty');
+    // });
+
+    $('body').on('click', '.quickChange', function () {
         event.preventDefault();
-        createChangeButtons();
-        // postTheEvent("Diaper Change", 'wet');
+        postTheEvent("Diaper Change", $(this).text());
     });
+
+
 
     function createChangeButtons(){
         destroyChangeButtons();
@@ -63,7 +77,7 @@ $(document).ready(function () {
         // postTheEvent("Diaper Change", 'wet');
     });
 
-    $('body').on('click', '#foodQuickLog', function () {
+    $('body').on('click', '#foodQuickLogBottle', function () {
         event.preventDefault();
         postTheEvent("Feeding", 'bottle');
     });
