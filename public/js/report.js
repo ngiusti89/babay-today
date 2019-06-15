@@ -5,7 +5,7 @@ $(document).ready(function () {
     $.get("/api/getbabyevents/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
-            $(".babyRows").text(data);
+           console.log(data);
         }
     });
 
