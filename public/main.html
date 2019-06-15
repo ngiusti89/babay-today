@@ -63,46 +63,203 @@
             </div>
         </div>
     </nav>
+    <!-- members js -->
+    <script src="../public/js/members.js"></script>
+
+    <!-- baby js
+    <script src="../models/baby.js"></script> -->
+
+    <!-- log buttons js -->
+    <script src="../public/js/main.js"></script>
 
     <br>
 
     <!-- log buttons -->
+    <!-- food button -->
     <div class="container" id="log-buttons">
         <button type="button" class="btn btn-success btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
-
+        <!-- TODO food menu options -->
         <div id="foodOptions" class="collapse">
-            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLogBottle"><i class='far fa-clock'></i> Bottle</button>
-            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLogNursing"><i class='far fa-clock'></i> Nursing</button>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-lg btn-secondary quickFood" id="foodQuickLogBottle"><i
+                            class='far fa-clock'></i> Bottle</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickFood" id="foodQuickLogNursing"><i
+                            class='fas fa-clock'></i> Nursing</button>
+                    <!-- old quick log -->
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Food Log</button> -->
+                    <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse" data-target="#foodDetails"
+                        id="foodDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Manual Feed Log</button>
+                </div>
+            </div>
+        </div>
+        <!-- detailed food log options -->
+        <div id="foodDetails" class="collapse">
+            <div class="row">
+                <div class="col text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Type</th>
+                                <th>Amount (oz.)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                                        id="foodDetailTime">
+                                </td>
+                                <td>
+                                    <select class="form-control-lg" id="foodType">
+                                        <option selected="">Bottle</option>
+                                        <option>Nursing</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control-lg" id="foodAmount">
+                                        <option selected="">4 oz.</option>
+                                        <option>8 oz.</option>
+                                        <option>12 oz.</option>
+                                        <option>16 oz.</option>
+                                        <option>20 oz.</option>
+                                        <option>24 oz.</option>
+                                        <option>28 oz.</option>
+                                        <option>32 oz.</option>
+                                        <option>36 oz.</option>
+                                        <option>40 oz.</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
+        <!-- change -->
         <button type="button" class="btn btn-warning btn-lg btn-block logButton" data-toggle="collapse"
-            data-target="#changeOptions" id="change"><i class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
-
+            data-target="#changeOptions" id="change"><i class="fas fa-baby fa-fw fa-lg"></i>Change</button>
+        <!-- TODO change menu options -->
         <div id="changeOptions" class="collapse">
-            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDry"><i class='far fa-sun-dust'></i> Dry</button>
-            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogWet"><i class='fas fa-water'></i> Wet</button>
-            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDirty"><i class="fas fa-baby"></i> Dirty</button>
+            <div class="row">
+                <div class="col text-center">
+                    <!-- ? incorporate this -->
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDry"><i
+                            class='far fa-smile-beam'></i> Dry</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogWet"><i
+                            class='fas fa-water'></i> Wet</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDirty"><i
+                            class="fas fa-poo"></i> Dirty</button>
+                    <!-- old quick log -->
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Log Change</button> -->
+                    <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse"
+                        data-target="#changeDetails" id="changeDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i>
+                        Manual Change Log</button>
+                </div>
+            </div>
+        </div>
+        <!-- detailed change log options -->
+        <div id="changeDetails" class="collapse">
+            <div class="row">
+                <div class="col text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Type</th>
+                                <th>notes?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                                        id="changeDetailTime">
+                                </td>
+                                <td>
+                                    <select class="form-control-lg" id="foodType">
+                                        <option selected="">Wet</option>
+                                        <option>Solids</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" id="changeNotes" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
+        <!-- sleep -->
         <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#sleepOptions" id="sleep"><i class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
-
+        <!-- TODOD sleep menu options -->
         <div id="sleepOptions" class="collapse">
-            <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+            <div class="row">
+                <div class="col text-center">
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Log Sleep</button> -->
+                    <button type="button" class="btn btn-lg btn-secondary quickSleep" id="quickSleep"><i
+                            class="fas fa-stopwatch fa-fw fa-lg"></i> Start Sleep</button>
+                    <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse" data-target="#sleepDetails"
+                        id="sleepDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Manual Sleep Log</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- detailed sleep log options -->
+    <div id="sleepDetails" class="collapse">
+        <div class="row">
+            <div class="col text-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>How Long</th>
+                            <th>notes?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                                    id="changeDetailTime">
+                            </td>
+                            <td>
+                                <select class="form-control-lg" id="foodType">
+                                    <option selected="">Nap</option>
+                                    <option>Full Night</option>
+                                </select>
+                            </td>
+                            <td>
+                                <textarea class="form-control" id="changeNotes" rows="2"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
 
     <!-- members js -->
-  
+
 
     <!-- baby js
     <script src="../models/baby.js"></script> -->
 
     <!-- log buttons js -->
     <script src="js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 </body>
 
