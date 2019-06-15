@@ -75,6 +75,29 @@ module.exports = function (app) {
     }
   });
 
+// Getting baby events
+app.get("/api/getevents/:id", function (req, res) {
+  // console.log("request is", req)
+  if (req.user) {
+    db.Event.findAll({
+      limit: 5,
+      where: {
+        baby_id: req.user.id
+      },
+      order: [ [ 'id', 'DESC']]
+    }).then(function (dbd) {
+      console.log("Found " + dbd);
+      res.json(dbd);
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+
+
+
+
   app.post("/api/addbaby", function (request, response) {
     console.log("TCL: request", request.user.id)
     if (request.user) {

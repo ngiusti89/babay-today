@@ -19,7 +19,7 @@ module.exports = function (app) {
       res.redirect("/baby-select");
       return;
     }
-    
+
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
@@ -28,10 +28,10 @@ module.exports = function (app) {
     if (req.user) {
       res.sendFile(path.join(__dirname, "../public/main.html"));
       return;
-    } 
-  
+    }
+
     res.sendFile(path.join(__dirname, "../public/login.html"));
-    
+
   });
   app.get("/report", function (req, res) {
 
@@ -44,10 +44,20 @@ module.exports = function (app) {
     
   });
 
-  app.get("/addbaby", function(req, res){
+  app.get("/addbaby", function (req, res) {
 
     if (req.user) {
       res.redirect("/add-baby.html");
+      return;
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+
+  app.get("/chart-test", function (req, res) {
+
+    if (req.user) {
+      res.redirect("/chart-test.html");
       return;
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
