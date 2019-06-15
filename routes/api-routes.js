@@ -133,9 +133,12 @@ app.get("/api/getevents/:id", function (req, res) {
       where: {
         id: req.params.id,
         account_id: req.user.id
-      }
+      },
+      include:[{
+        model: db.Event
+      }]
     }).then(function (dbd) {
-    
+    console.log("*****************************ID**********"+id);
         db.Event.findAll({
           where: {
             baby_id: id           
@@ -143,6 +146,9 @@ app.get("/api/getevents/:id", function (req, res) {
           include: [{
             model: db.EventDetail
            }]
+        }).then(function(dbd){
+          console.log(dbd)
+          res.json(dbd);
         })
       
     });
