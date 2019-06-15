@@ -24,17 +24,24 @@ $(document).ready(function () {
     }
 
 
+    // old sleep quick log
+    // $('body').on('click', '#sleepQuickLog', function () {
+    //     console.log("sleep quick log clicked");
+    //     var sleepTime = new Date().toLocaleString(undefined, {
+    //         day: 'numeric',
+    //         month: 'numeric',
+    //         year: 'numeric',
+    //         hour: '2-digit',
+    //         minute: '2-digit',
+    //     });
+    //     console.log(sleepTime);
+    // });
 
-    $('body').on('click', '#sleepQuickLog', function () {
-        console.log("sleep quick log clicked");
-        var sleepTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(sleepTime);
+    $('body').on('click', '#quickSleep', function () {
+        var sleepButton = document.getElementById("quickSleep");
+        if (sleepButton.value == "Start Sleep") sleepButton.value = "Stop Sleep";
+        else sleepButton.value = "Start Sleep";
+        console.log("clicked");
     });
 
     // $('body').on('click', '#changeQuickLogWet', function () {
@@ -57,23 +64,23 @@ $(document).ready(function () {
 
 
 
-    function createChangeButtons(){
+    function createChangeButtons() {
         destroyChangeButtons();
-        $('#changeOptions').append($("<div>").addClass("container").attr("id","diaper-btn-container"));
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dry-button"));
+        $('#changeOptions').append($("<div>").addClass("container").attr("id", "diaper-btn-container"));
+
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "dry-button"));
         $('#dry-button').append($("<i>").addClass("far fa-sun-dust"));
         $('#dry-button').html('Dry')
 
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","wet-button"));
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "wet-button"));
         $('#wet-button').append($("<i>").addClass("fas fa-water"));
         $('#wet-button').html('Wet')
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dirty-button"));
+
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "dirty-button"));
         $('#dirty-button').append($("<i>").addClass("fas fa-water"));
         $('#dirty-button').html('Dirty')
     }
-    function destroyChangeButtons(){
+    function destroyChangeButtons() {
         $('#diaper-btn-container').empty();
     }
 
@@ -94,7 +101,7 @@ $(document).ready(function () {
             babyId: 1 //hardcoding it for now
         }).then(function (data) {
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , 4, false);
+            postEventDetails(data, eventName, eventDetail, 4, false);
         });
     }
 
