@@ -73,14 +73,17 @@
             data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
 
         <div id="foodOptions" class="collapse">
-            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLogBottle"><i class='far fa-clock'></i> Bottle</button>
+            <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLogNursing"><i class='far fa-clock'></i> Nursing</button>
         </div>
 
         <button type="button" class="btn btn-warning btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#changeOptions" id="change"><i class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
 
         <div id="changeOptions" class="collapse">
-            <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i class='far fa-clock'></i> Quick Log</button>
+            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDry"><i class='far fa-sun-dust'></i> Dry</button>
+            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogWet"><i class='fas fa-water'></i> Wet</button>
+            <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDirty"><i class="fas fa-baby"></i> Dirty</button>
         </div>
 
         <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
@@ -99,8 +102,8 @@
     <script src="../models/baby.js"></script> -->
 
     <!-- log buttons js -->
-    <script src="js/logButtons.js"></script>
-    
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>    
 
 </body>
 

@@ -1,3 +1,6 @@
+// event_type_name = food, Bowel Movement, Sleep
+// baby_id: DataTypes.INTEGER (FK)
+
 module.exports = function(sequelize, DataTypes) {
     var Event = sequelize.define("Event", {
         event_type_name: {
@@ -7,9 +10,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        created_at: DataTypes.DATE,
-        baby_id: DataTypes.INTEGER,
-        account_id: DataTypes.INTEGER
+        baby_id: DataTypes.INTEGER
     });
     
     return Event;
