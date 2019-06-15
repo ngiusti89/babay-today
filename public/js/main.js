@@ -18,11 +18,28 @@ $(document).ready(function () {
     }
 
 
+    // old sleep quick log
+    // $('body').on('click', '#sleepQuickLog', function () {
+    //     console.log("sleep quick log clicked");
+    //     var sleepTime = new Date().toLocaleString(undefined, {
+    //         day: 'numeric',
+    //         month: 'numeric',
+    //         year: 'numeric',
+    //         hour: '2-digit',
+    //         minute: '2-digit',
+    //     });
+    //     console.log(sleepTime);
+    // });
 
     $('body').on('click', '#sleepQuickLog', function () {
         event.preventDefault();
         console.log('baby id:' + urlParm)
         postTheEvent('Sleep', '');
+    // $('body').on('click', '#quickSleep', function () {
+    //     var sleepButton = document.getElementById("quickSleep");
+    //     if (sleepButton.value == "Start Sleep") sleepButton.value = "Stop Sleep";
+    //     else sleepButton.value = "Start Sleep";
+    //     console.log("clicked");
     });
 
     $('body').on('click', '.quickChange', function () {
