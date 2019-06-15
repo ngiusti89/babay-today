@@ -10,9 +10,19 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        baby_id: DataTypes.INTEGER
+        baby_id: DataTypes.INTEGER 
     });
     
+    Event.associate = function(models) {
+
+           
+  
+        Event.hasMany(models.EventDetail, {
+              onDelete: "cascade",
+              foreignKey:"event_type_key"
+            });
+          }
+
     return Event;
     
     }

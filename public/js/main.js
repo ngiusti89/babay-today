@@ -1,6 +1,12 @@
 $(document).ready(function () {
 
     var urlParm = getUrlParameter("baby-id");
+    //append reports button with baby id attached
+    var eleLi = $("#reportLi");
+    
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep");
+    babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
