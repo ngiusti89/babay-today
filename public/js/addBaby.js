@@ -18,10 +18,16 @@ $(document).ready(function () {
     });
 
     function validateForm() {
-        var isValid = moment($('#babyBday').val().trim(), ['YYYY/MM/DD', 'MM/DD/YYYY', 'M/D/YY', 'D/M/YY'], true).isValid();
+        enteredDate = moment($('#babyBday').val().trim());
+        var isValid = moment(enteredDate, ['YYYY/MM/DD', 'MM/DD/YYYY', 'M/D/YY', 'D/M/YY'], true).isValid();
+        var futureDate = enteredDate.isAfter(moment());
         if (!isValid) {
             popupErrorModal("Incorrect date format. date should be YYYY-DD-MM format")
-        }else if($('#babyName').val().trim() === ""){
+        }else if(futureDate){
+            popupErrorModal("birthdate cannot be in the future")
+            isValid = false;
+        }
+        else if($('#babyName').val().trim() === ""){
             popupErrorModal("Must enter a name")
             isValid = false;
         }
