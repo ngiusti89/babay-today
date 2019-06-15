@@ -55,6 +55,7 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '#foodQuickLog', function () {
+        // event.preventDefault();
         console.log("food quick log clicked");
         var foodTime = new Date().toLocaleString(undefined, {
             day: 'numeric',
@@ -64,6 +65,14 @@ $(document).ready(function () {
             minute: '2-digit',
         });
         console.log(foodTime);
+        $.post('/api/addevent', {
+            eventType: food,
+            // babyGender: babyGender,
+            // babyBirthday: babyBirthday
+        }).then(function (data) {
+            console.log(data);
+            // window.location.href = "/babypicker";
+        })
     });
 
 });
