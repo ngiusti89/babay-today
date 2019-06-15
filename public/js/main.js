@@ -32,53 +32,65 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '#changeQuickLog', function () {
-        console.log("change quick log clicked");
-        var changeTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(changeTime);
+        event.preventDefault();
+        createChangeButtons();
+        // postTheEvent("Diaper Change", 'wet');
+    });
+
+    function createChangeButtons(){
+        destroyChangeButtons();
+        $('#changeOptions').append($("<div>").addClass("container").attr("id","diaper-btn-container"));
+        
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dry-button"));
+        $('#dry-button').append($("<i>").addClass("far fa-sun-dust"));
+        $('#dry-button').html('Dry')
+
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","wet-button"));
+        $('#wet-button').append($("<i>").addClass("fas fa-water"));
+        $('#wet-button').html('Wet')
+        
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dirty-button"));
+        $('#dirty-button').append($("<i>").addClass("fas fa-water"));
+        $('#dirty-button').html('Dirty')
+    }
+    function destroyChangeButtons(){
+        $('#diaper-btn-container').empty();
+    }
+
+    $('body').on('click', '.diaper-button', function () {
+        event.preventDefault();
+        console.log($("this").attr("html"))
+        // postTheEvent("Diaper Change", 'wet');
     });
 
     $('body').on('click', '#foodQuickLog', function () {
         event.preventDefault();
-        console.log("food quick log clicked");
-        //first: lets add the event
-        $.post('/api/quicklog', {
-            eventName: "Feeding",
-            babyId: 1 //hardcoding it for now
-        })
-            .then(function (data) {
-                console.log("TCL: EVENT data: ", data)
-                nowPostEventDetails(data, 'bottle', 4);
-            });
-
-        var foodTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(foodTime);
+        postTheEvent("Feeding", 'bottle');
     });
 
-    function nowPostEventDetails(data, typeOfFood, howMuch) {
-        //Second: lets add the event details
-        $.post('/api/quicklog/feedStarted',{
+    function postTheEvent(eventName, eventDetail) {
+        $.post('/api/quicklog', {
+            eventName: eventName,
+            babyId: 1 //hardcoding it for now
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            postEventDetails(data, eventName, eventDetail , 4, false);
+        });
+    }
 
+    function postEventDetails(data, eventName, eventDetail, howMuch, timeBool) {
+
+        //Second: lets add the event details
+        $.post('/api/quicklog/feedStarted', {
             eventId: data.id,
-            typeOfFeeding: typeOfFood,
+            typeOfFeeding: eventDetail,
             howManyOz: howMuch,
-            timeStarted: false
+            timeStarted: timeBool
         })
-        .then(function (data){
-        console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
-            popupModal("event posted successfully", "Success!")
-        })
+            .then(function (data) {
+                console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                popupModal("event posted successfully", "Success!")
+            })
     }
 
 

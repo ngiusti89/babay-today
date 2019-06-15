@@ -28,6 +28,18 @@ module.exports = function (app) {
     }
   });
 
+  app.post('/api/quicklog/diaperChange', function(request, response){
+    if(request.user){
+      db.EventDetail.create({
+        event_type_key: request.body.eventId,
+        string_value: request.body.typeOfBM,
+      })
+      .then(function(data){
+        response.json(data);
+      });
+    }
+  });
+
   app.post('/api/quicklog/feedStarted', function (request, response ){
     if(request.user){
       db.EventDetail.create({
