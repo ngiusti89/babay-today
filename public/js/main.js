@@ -51,23 +51,23 @@ $(document).ready(function () {
 
 
 
-    function createChangeButtons(){
+    function createChangeButtons() {
         destroyChangeButtons();
-        $('#changeOptions').append($("<div>").addClass("container").attr("id","diaper-btn-container"));
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dry-button"));
+        $('#changeOptions').append($("<div>").addClass("container").attr("id", "diaper-btn-container"));
+
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "dry-button"));
         $('#dry-button').append($("<i>").addClass("far fa-sun-dust"));
         $('#dry-button').html('Dry')
 
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","wet-button"));
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "wet-button"));
         $('#wet-button').append($("<i>").addClass("fas fa-water"));
         $('#wet-button').html('Wet')
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dirty-button"));
+
+        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id", "dirty-button"));
         $('#dirty-button').append($("<i>").addClass("fas fa-water"));
         $('#dirty-button').html('Dirty')
     }
-    function destroyChangeButtons(){
+    function destroyChangeButtons() {
         $('#diaper-btn-container').empty();
     }
 
@@ -88,7 +88,7 @@ $(document).ready(function () {
             babyId: 1 //hardcoding it for now
         }).then(function (data) {
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , 4, false);
+            postEventDetails(data, eventName, eventDetail, 4, false);
         });
     }
 
@@ -128,5 +128,91 @@ $(document).ready(function () {
         $("#errModalFooter").append($("<button>").addClass("btn btn-secondary").attr({ id: "closeButton", type: "button" }).attr("data-dismiss", "modal").html("close"))
         $("#errorModal").modal("show");
     }
+
+
+    // Setting Up Last-Five Chart
+    var babyList = $(".babyRows");
+    var babyContainer = $(".baby-container");
+
+    getBabyData();
+    function getBabyData() {
+        //id should be for account. get all babies associated. 
+
+        $.get("/api/getevents/" + urlParm, function (data) {
+            console.log("TCL: getBabyData -> data", data)
+            if (data) {
+                console.log("found a baby");
+                var rowsToAdd = [];
+                for (var i = 0; i < data.length; i++) {
+                    rowsToAdd.push(createBabyRowSelector(data[i]));
+                }
+                console.log(rowsToAdd)
+                renderBabiesList(rowsToAdd);
+
+            }
+        });
+    }
+
+    function getBabyAge(bbData) {
+        babyBirthday = bbData.baby_birthday;
+        if (moment().diff(moment(babyBirthday), 'months') > 30) {
+            return moment().diff(moment(babyBirthday), 'years') + ' years';
+        } else {
+            return moment().diff(moment(babyBirthday), 'months') + ' months';
+        }
+
+    }
+
+
+    function createBabyRowSelector(bbData) {
+        getBabyAge(bbData);
+        console.log(bbData.event_type_name)
+        var newTr = $("<tr>");
+        newTr.data("babe", bbData.id);
+        var babyNameTD = $("<td>");
+        babyNameTD.text(bbData.event_type_name);
+        babyNameTD.appendTo(newTr)
+        var babyAgeTD = $("<td>");
+        babyAgeTD.text(getBabyAge(bbData));
+        babyAgeTD.appendTo(newTr)
+        var babyAgeLU = $("<td>");
+        babyAgeLU.text(moment(bbData.updatedAt).format("h:m a"));
+        babyAgeLU.appendTo(newTr)
+        var babySelector = $("<td>");
+        babySelector.addClass("babySelector")
+        babySelector.data("id", bbData.id)
+        var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
+        babyText.addClass("babyLink");
+        babyText.appendTo(babySelector);
+        babySelector.appendTo(newTr);
+        return newTr;
+    }
+
+    function renderBabiesList(rows) {
+        // babyList.children().not(":last").remove();
+        // babyContainer.children(".alert").remove();
+
+        if (rows.length > 0) {
+            console.log(rows + babyList);
+            babyList.append(rows);
+
+        }
+        else {
+            renderEmpty();
+        }
+    }
+
+    function renderEmpty() {
+        var alertDiv = $("<div>");
+        alertDiv.addClass("alert alert-danger");
+        alertDiv.text("You must create a BABY (again).");
+        babyContainer.append(alertDiv);
+    }
+
+
+
+
+
+
 
 });
