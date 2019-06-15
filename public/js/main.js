@@ -20,61 +20,14 @@ $(document).ready(function () {
 
 
     $('body').on('click', '#sleepQuickLog', function () {
-        console.log("sleep quick log clicked");
-        var sleepTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(sleepTime);
+        event.preventDefault();
+        console.log('baby id:' + urlParm)
+        postTheEvent('Sleep', '');
     });
-
-    // $('body').on('click', '#changeQuickLogWet', function () {
-    //     event.preventDefault();
-    //     postTheEvent("Diaper Change", 'Wet');
-    // });
-    // $('body').on('click', '#changeQuickLogDry', function () {
-    //     event.preventDefault();
-    //     postTheEvent("Diaper Change", 'Dry');
-    // });
-    // $('body').on('click', '#changeQuickLogDirty', function () {
-    //     event.preventDefault();
-    //     postTheEvent("Diaper Change", 'Dirty');
-    // });
 
     $('body').on('click', '.quickChange', function () {
         event.preventDefault();
         postTheEvent("Diaper Change", $(this).text());
-    });
-
-
-
-    function createChangeButtons(){
-        destroyChangeButtons();
-        $('#changeOptions').append($("<div>").addClass("container").attr("id","diaper-btn-container"));
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dry-button"));
-        $('#dry-button').append($("<i>").addClass("far fa-sun-dust"));
-        $('#dry-button').html('Dry')
-
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","wet-button"));
-        $('#wet-button').append($("<i>").addClass("fas fa-water"));
-        $('#wet-button').html('Wet')
-        
-        $('#diaper-btn-container').append($("<button>").addClass("btn btn-lg btn-secondary diaper-button").attr("id","dirty-button"));
-        $('#dirty-button').append($("<i>").addClass("fas fa-water"));
-        $('#dirty-button').html('Dirty')
-    }
-    function destroyChangeButtons(){
-        $('#diaper-btn-container').empty();
-    }
-
-    $('body').on('click', '.diaper-button', function () {
-        event.preventDefault();
-        console.log($("this").attr("html"))
-        // postTheEvent("Diaper Change", 'wet');
     });
 
     $('body').on('click', '#foodQuickLogBottle', function () {
@@ -85,15 +38,15 @@ $(document).ready(function () {
     function postTheEvent(eventName, eventDetail) {
         $.post('/api/quicklog', {
             eventName: eventName,
-            babyId: 1 //hardcoding it for now
+            babyId: urlParm
         }).then(function (data) {
+            if(eventName==='Sleep'){}
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , 4, false);
+            postEventDetails(data, eventName, eventDetail , 4, (eventName==='Sleep'));
         });
     }
 
     function postEventDetails(data, eventName, eventDetail, howMuch, timeBool) {
-
         //Second: lets add the event details
         $.post('/api/quicklog/feedStarted', {
             eventId: data.id,
@@ -103,11 +56,28 @@ $(document).ready(function () {
         })
             .then(function (data) {
                 console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
-                popupModal("event posted successfully", "Success!")
+                popupModal(eventName + " event posted successfully", "Success!")
             })
     }
 
+    // app.get('/api/quicklog/sleepingbaby', function(request, response){
+    //     db.post
+    // })
 
+//       // Get route for retrieving a single post
+//   app.get("/api/posts/:id", function(req, res) {
+//     // Here we add an "include" property to our options in our findOne query
+//     // We set the value to an array of the models we want to include in a left outer join
+//     // In this case, just db.Author
+//     db.Post.findOne({
+//       where: {
+//         id: req.params.id
+//       },
+//       include: [db.Author]
+//     }).then(function(dbPost) {
+//       res.json(dbPost);
+//     });
+//   });
 
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
