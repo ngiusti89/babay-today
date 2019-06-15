@@ -13,9 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         baby_id: DataTypes.INTEGER 
     });
     
-    Event.associate = function(models) {
-
-           
+    Event.associate = function(models) {           
   
         Event.hasMany(models.EventDetail, {
               onDelete: "cascade",

@@ -99,7 +99,7 @@ app.get("/api/getevents/:id", function (req, res) {
       },
       order: [ [ 'id', 'DESC']]
     }).then(function (dbd) {
-      console.log("Found " + dbd);
+    
       res.json(dbd);
     });
   } else {
@@ -156,7 +156,7 @@ app.get("/api/getevents/:id", function (req, res) {
             model: db.EventDetail
            }]
         }).then(function(dbd){
-          console.log(dbd)
+          
           res.json(dbd);
         })
       
