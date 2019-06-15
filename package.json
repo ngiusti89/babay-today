@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ajayrajyadav/project-two#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "chart.js": "^2.8.0",
     "dotenv": "^4.0.0",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
@@ -28,5 +29,6 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.8.7"
-  }
+  },
+  "devDependencies": {}
 }

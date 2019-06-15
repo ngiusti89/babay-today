@@ -20,6 +20,13 @@ var Baby = sequelize.define("Baby", {
     // createdAt: DataTypes.DATETIME
 });
 
+Baby.associate = function(models) {
+  
+    Baby.hasMany(models.Event, {
+      onDelete: "cascade",
+      foreignKey: "baby_id"
+    });
+  };
 return Baby;
 
 }
