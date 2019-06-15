@@ -97,7 +97,8 @@ app.get("/api/getevents/:id", function (req, res) {
       where: {
         baby_id: req.user.id
       },
-      order: [ [ 'id', 'DESC']]
+      order: [ [ 'id', 'DESC']],
+      include: [db.EventDetail]
     }).then(function (dbd) {
     
       res.json(dbd);
