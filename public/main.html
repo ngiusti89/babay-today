@@ -79,14 +79,19 @@
     <div class="container" id="log-buttons">
         <button type="button" class="btn btn-success btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
-        <!-- food menu options -->
+        <!-- TODO food menu options -->
         <div id="foodOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLog"><i
-                            class="far fa-clock fa-fw fa-lg"></i> Food Log</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickFood" id="foodQuickLogBottle"><i
+                            class='far fa-clock'></i> Bottle</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickFood" id="foodQuickLogNursing"><i
+                            class='fas fa-clock'></i> Nursing</button>
+                    <!-- old quick log -->
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="foodQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Food Log</button> -->
                     <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse" data-target="#foodDetails"
-                        id="foodDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Detail Log</button>
+                        id="foodDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Manual Feed Log</button>
                 </div>
             </div>
         </div>
@@ -110,9 +115,8 @@
                                 </td>
                                 <td>
                                     <select class="form-control-lg" id="foodType">
-                                        <option selected="">Solid</option>
-                                        <option>Breastmilk</option>
-                                        <option>Formula</option>
+                                        <option selected="">Bottle</option>
+                                        <option>Nursing</option>
                                     </select>
                                 </td>
                                 <td>
@@ -134,20 +138,29 @@
                     </table>
                 </div>
             </div>
+
         </div>
 
         <!-- change -->
         <button type="button" class="btn btn-warning btn-lg btn-block logButton" data-toggle="collapse"
-            data-target="#changeOptions" id="change"><i class="fas fa-toilet fa-fw fa-lg"></i>Change</button>
-        <!-- change menu options -->
+            data-target="#changeOptions" id="change"><i class="fas fa-baby fa-fw fa-lg"></i>Change</button>
+        <!-- TODO change menu options -->
         <div id="changeOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i
-                            class="far fa-clock fa-fw fa-lg"></i> Log Change</button>
+                    <!-- ? incorporate this -->
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDry"><i
+                            class='far fa-smile-beam'></i> Dry</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogWet"><i
+                            class='fas fa-water'></i> Wet</button>
+                    <button type="button" class="btn btn-lg btn-secondary quickChange" id="changeQuickLogDirty"><i
+                            class="fas fa-poo"></i> Dirty</button>
+                    <!-- old quick log -->
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="changeQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Log Change</button> -->
                     <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse"
                         data-target="#changeDetails" id="changeDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i>
-                        Detail Log</button>
+                        Manual Change Log</button>
                 </div>
             </div>
         </div>
@@ -183,19 +196,22 @@
                     </table>
                 </div>
             </div>
+
         </div>
 
         <!-- sleep -->
         <button type="button" class="btn btn-primary btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#sleepOptions" id="sleep"><i class="fas fa-bed fa-fw fa-lg"></i>&nbsp;Sleep</button>
-        <!-- sleep menu options -->
+        <!-- TODOD sleep menu options -->
         <div id="sleepOptions" class="collapse">
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i
-                            class="far fa-clock fa-fw fa-lg"></i> Log Sleep</button>
+                    <!-- <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i
+                            class="far fa-clock fa-fw fa-lg"></i> Log Sleep</button> -->
+                    <button type="button" class="btn btn-lg btn-secondary quickSleep" id="quickSleep"><i
+                            class="fas fa-stopwatch fa-fw fa-lg"></i> Start Sleep</button>
                     <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse" data-target="#sleepDetails"
-                        id="sleepDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Detail Log</button>
+                        id="sleepDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Manual Sleep Log</button>
                 </div>
             </div>
         </div>
@@ -207,8 +223,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Date/Time</th>
-                            <th>Type</th>
+                            <th>Date</th>
+                            <th>How Long</th>
                             <th>notes?</th>
                         </tr>
                     </thead>
@@ -236,14 +252,14 @@
 
 
     <!-- members js -->
-  
+
 
     <!-- baby js
     <script src="../models/baby.js"></script> -->
 
     <!-- log buttons js -->
     <script src="js/main.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 </body>
 
