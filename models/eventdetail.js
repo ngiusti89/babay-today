@@ -14,17 +14,19 @@ module.exports = function (sequelize, DataTypes) {
         },
         string_value: DataTypes.STRING,
         integer_value: DataTypes.INTEGER,
+        time_created: DataTypes.DATE,
+        time_started_bool: DataTypes.BOOLEAN,
+        time_ended: DataTypes.DATE,
         detail_name: {
             type: DataTypes.STRING
         }
-        
     });
 
-    EventDetail.associate = function(models) {
+    // EventDetail.associate = function(models) {
         
-        EventDetail.belongsTo(models.Event, {
-          foreignKey: "event_type_key"
-        });
-      };
+    //     EventDetail.belongsTo(models.Event, {
+    //       foreignKey: "event_type_key"
+    //     });
+    //   };
     return EventDetail;
 }

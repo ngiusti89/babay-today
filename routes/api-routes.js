@@ -54,6 +54,19 @@ module.exports = function (app) {
     }
   });
 
+  app.post('/api/quicklog/sleepStarted', function(request, response){
+    if(request.user){
+      db.EventDetail.create({
+        event_type_key: request.body.eventId,
+        integer_value: request.body.sleepDuration,
+        time_started_bool: request.body.sleepingOrNot
+      })
+      .then(function(data){
+        response.json(data);
+      })
+    }
+  });
+
   app.post("/users", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.User.findAll({}).then(function (dbd) {
@@ -87,17 +100,13 @@ app.get("/api/getevents/:id", function (req, res) {
       order: [ [ 'id', 'DESC']],
       include: [db.EventDetail]
     }).then(function (dbd) {
-      console.log("Found " + dbd);
+    
       res.json(dbd);
     });
   } else {
     res.redirect("/login");
   }
 });
-
-
-
-
 
   app.post("/api/addbaby", function (request, response) {
     console.log("TCL: request", request.user.id)
@@ -134,9 +143,12 @@ app.get("/api/getevents/:id", function (req, res) {
       where: {
         id: req.params.id,
         account_id: req.user.id
-      }
+      },
+      include:[{
+        model: db.Event
+      }]
     }).then(function (dbd) {
-    
+    console.log("*****************************ID**********"+id);
         db.Event.findAll({
           where: {
             baby_id: id           
@@ -144,6 +156,9 @@ app.get("/api/getevents/:id", function (req, res) {
           include: [{
             model: db.EventDetail
            }]
+        }).then(function(dbd){
+          
+          res.json(dbd);
         })
       
     });
