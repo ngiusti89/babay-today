@@ -31,6 +31,14 @@ $(document).ready(function () {
     //     console.log(sleepTime);
     // });
 
+    $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
+    });
+
+
     $('body').on('click', '#quickSleep', function () {
         var sleepButton = document.getElementById("quickSleep");
         if (sleepButton.value == "Start Sleep") sleepButton.value = "Stop Sleep";
