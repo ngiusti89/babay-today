@@ -1,6 +1,12 @@
 $(document).ready(function () {
 
     var urlParm = getUrlParameter("baby-id");
+    //append reports button with baby id attached
+    var eleLi = $("#reportLi");
+    
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep");
+    babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
@@ -18,17 +24,24 @@ $(document).ready(function () {
     }
 
 
+    // old sleep quick log
+    // $('body').on('click', '#sleepQuickLog', function () {
+    //     console.log("sleep quick log clicked");
+    //     var sleepTime = new Date().toLocaleString(undefined, {
+    //         day: 'numeric',
+    //         month: 'numeric',
+    //         year: 'numeric',
+    //         hour: '2-digit',
+    //         minute: '2-digit',
+    //     });
+    //     console.log(sleepTime);
+    // });
 
-    $('body').on('click', '#sleepQuickLog', function () {
-        console.log("sleep quick log clicked");
-        var sleepTime = new Date().toLocaleString(undefined, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        console.log(sleepTime);
+    $('body').on('click', '#quickSleep', function () {
+        var sleepButton = document.getElementById("quickSleep");
+        if (sleepButton.value == "Start Sleep") sleepButton.value = "Stop Sleep";
+        else sleepButton.value = "Start Sleep";
+        console.log("clicked");
     });
 
     // $('body').on('click', '#changeQuickLogWet', function () {

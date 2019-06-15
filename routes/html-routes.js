@@ -33,6 +33,16 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 
   });
+  app.get("/report", function (req, res) {
+
+    if (req.user) {
+      res.sendFile(path.join(__dirname, "../public/baby-reports.html"));
+      return;
+    } 
+  
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+    
+  });
 
   app.get("/addbaby", function (req, res) {
 
