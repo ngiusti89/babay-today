@@ -22,11 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    EventDetail.associate = function(models) {
+    // EventDetail.associate = function(models) {
         
-        EventDetail.belongsTo(models.Event, {
-          foreignKey: "event_type_key"
-        });
-      };
+    //     EventDetail.belongsTo(models.Event, {
+    //       foreignKey: "event_type_key"
+    //     });
+    //   };
     return EventDetail;
 }
