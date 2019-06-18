@@ -17,11 +17,13 @@ exports.dbConfig = {
     dialect: "mysql"
   },
   production: {
-    username: process.env.PRODUCTION_USERNAME,
-    password: process.env.PRODUCTION_PASSWORD,
-    database: process.env.PRODUCTION_DB,
-    host: process.env.PRODUCTION_PASSWORD,
-    port: process.env.PRODUCTION_PORT,
+    // "use_env_variable": "JAWSDB_URL",
+    // "dialect": "mysql"
+    username: 'u44h3q2k9lqyvexo',
+    password: 'feis9tvse71veykb',
+    database: 'qmjmnm0yyv0xwcj2',
+    host: 'x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    port: '3306',
     dialect: "mysql"
   }
 };
