@@ -11,14 +11,14 @@ $(document).ready(function () {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
             $("#babyNameAge").text(data.baby_name + " - " + getBabyAge(data));
-            if (data.baby_img_url != ''){
-               var imgBaby = $("<img>")
-               imgBaby.attr("src",data.baby_img_url);
-               imgBaby.attr("width","150px");
-               imgBaby.attr("height","150px");
-               imgBaby.appendTo(".babyPic")
+            // if (data.baby_img_url != ''){
+            //    var imgBaby = $("<img>")
+            //    imgBaby.attr("src",data.baby_img_url);
+            //    imgBaby.attr("width","150px");
+            //    imgBaby.attr("height","150px");
+            //    imgBaby.appendTo(".babyPic")
                 
-            }
+            // }
         }
     });
 
