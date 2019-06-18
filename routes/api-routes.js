@@ -116,7 +116,8 @@ app.get("/api/getevents/:id", function (req, res) {
         baby_name: request.body.babyName,
         baby_gender: request.body.babyGender,
         baby_birthday: request.body.babyBirthday,
-        account_id: request.user.id
+        account_id: request.user.id,
+        baby_img_url: request.body.babyImage
       })
         .then(function (dbBaby) {
           response.json(dbBaby);
@@ -145,6 +146,7 @@ app.get("/api/getevents/:id", function (req, res) {
         id: req.params.id,
         account_id: req.user.id
       },
+      
       include:[{
         model: db.Event
       }]
@@ -154,6 +156,7 @@ app.get("/api/getevents/:id", function (req, res) {
           where: {
             baby_id: id           
           },
+          order: [ [ 'createdAt', 'DESC']],
           include: [{
             model: db.EventDetail
            }]
