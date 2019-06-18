@@ -4,23 +4,8 @@ $(document).ready(function () {
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
-=======
     var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
     babyRep.addClass("babyRep nav-link");
->>>>>>> d5baf9d2c3709f8ad5eca15d025126162e2db84c
-=======
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
->>>>>>> 10f41b225b4ee0ff5330c7e6e40c1cfff3cb32e1
-=======
-    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
-    babyRep.addClass("babyRep nav-link");
->>>>>>> d55b3dc8fbf001fcb47030251cba75527bf48a7f
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
@@ -49,107 +34,27 @@ $(document).ready(function () {
     $('body').on('click', '#quickSleep', function () {
         event.preventDefault();
         console.log('baby id:' + urlParm)
-        postTheEvent('Sleep', '', 0);
+        postTheEvent('Sleep', '');
     });
-
-    $('body').on('click', '#sleepDetailedLogSubmit', function () {
-        event.preventDefault();
-        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
-    });
-
-    $('body').on('click', '#feedingDetailedLogSubmit', function () {
-        event.preventDefault();
-        postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
-    });
-    
-
 
     $('body').on('click', '.quickChange', function () {
         event.preventDefault();
-        postTheEvent("Diaper Change", $(this).text(), 0);
+        postTheEvent("Diaper Change", $(this).text());
     });
 
     $('body').on('click', '#foodQuickLogBottle', function () {
         event.preventDefault();
-        postTheEvent("Feeding", 'bottle', 4, false);
+        postTheEvent("Feeding", 'bottle');
     });
 
-    $('body').on('click', '#changeDetailedLogSubmit', function () {
-        event.preventDefault();
-        postManualChange($('#changeType').val(), moment($('#changeDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
-    });
-
-    function postManualChange(typeOfChange, createdDateTime){
-        $.post('/api/quicklog', {
-            eventName: 'Feeding',
-            babyId: urlParm
-        }).then(function (data) {
-            console.log("TCL: EVENT data: ", data)
-            $.post('/api/quicklog/diaperChange', {
-                eventId: data.id,
-                typeOfBM: typeOfChange,
-                createdDateTime: createdDateTime
-            })
-                .then(function (data) {
-                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
-                    popupModal('Manual Feeding event posted successfully', "Success!")
-                })
-            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
-        });
-    }
-    
-
-    function postManualFeedign(howMuch, typeOfFeeding, createdDateTime){
-        $.post('/api/quicklog', {
-            eventName: 'Feeding',
-            babyId: urlParm
-        }).then(function (data) {
-            console.log("TCL: EVENT data: ", data)
-            $.post('/api/quicklog/feedStarted', {
-                eventId: data.id,
-                typeOfFeeding: typeOfFeeding,
-                howManyOz: howMuch,
-                sleepingOrNot: false,
-                createdDateTime: createdDateTime
-            })
-                .then(function (data) {
-                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
-                    popupModal('Manual Feeding event posted successfully', "Success!")
-                })
-            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
-        });
-    }
-
-    function postManualSleep(howLong, createdDateTime){
-        $.post('/api/quicklog', {
-            eventName: 'Sleep',
-            babyId: urlParm
-        }).then(function (data) {
-            console.log("TCL: EVENT data: ", data)
-            $.post('/api/quicklog/sleepStarted', {
-                eventId: data.id,
-                // typeOfFeeding: 'Sleep',
-                sleepDuration: howLong,
-                sleepingOrNot: false,
-                createdDateTime: createdDateTime
-            })
-                .then(function (data) {
-                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
-                    popupModal('Manual sleep event posted successfully', "Success!")
-                })
-            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
-        });
-    }
-
-    
-
-    function postTheEvent(eventName, eventDetail, howMuch) {
+    function postTheEvent(eventName, eventDetail) {
         $.post('/api/quicklog', {
             eventName: eventName,
             babyId: urlParm
         }).then(function (data) {
+            if(eventName==='Sleep'){}
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+            postEventDetails(data, eventName, eventDetail , 4, (eventName==='Sleep'));
         });
     }
 
@@ -212,6 +117,17 @@ $(document).ready(function () {
             }
         });
     }
+
+    function getBabyAge(bbData) {
+        babyBirthday = bbData.baby_birthday;
+        if (moment().diff(moment(babyBirthday), 'months') > 30) {
+            return moment().diff(moment(babyBirthday), 'years') + ' years';
+        } else {
+            return moment().diff(moment(babyBirthday), 'months') + ' months';
+        }
+
+    }
+
 
     function createBabyRowSelector(bbData) {
         getBabyAge(bbData);
