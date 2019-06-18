@@ -6,6 +6,7 @@ $(document).ready(function () {
     
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
     babyRep.addClass("babyRep");
 =======
@@ -16,6 +17,10 @@ $(document).ready(function () {
     var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
     babyRep.addClass("babyRep");
 >>>>>>> 10f41b225b4ee0ff5330c7e6e40c1cfff3cb32e1
+=======
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep nav-link");
+>>>>>>> d55b3dc8fbf001fcb47030251cba75527bf48a7f
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
