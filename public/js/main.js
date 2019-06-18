@@ -176,6 +176,7 @@ $(document).ready(function () {
 
 
     // Setting Up Last-Five Chart
+    var urlParm = getUrlParameter("baby-id");
     var babyList = $(".babyRows");
     var babyContainer = $(".baby-container");
 

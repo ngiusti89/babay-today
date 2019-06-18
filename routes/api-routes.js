@@ -94,23 +94,53 @@ module.exports = function (app) {
 
 // Getting baby events
 app.get("/api/getevents/:id", function (req, res) {
-  // console.log("request is", req)
-  if (req.user) {
+  var id = req.params.id;
+  console.log("Trying get with babyevents with id" + id)
+
+
+  db.Baby.findOne({
+    where: {
+      id: req.params.id,
+      account_id: req.user.id
+    },
+
+    include:[{
+      model: db.Event
+    }]
+  }).then(function (dbd) {
+    console.log("*****************************ID**********"+id);
     db.Event.findAll({
       limit: 5,
       where: {
-        baby_id: req.user.id
+        baby_id: id
       },
-      order: [ [ 'id', 'DESC']],
-      include: [db.EventDetail]
-    }).then(function (dbd) {
-    
+      order: [ [ 'createdAt', 'DESC']],
+      include: [{
+        model: db.EventDetail
+      }]
+    }).then(function(dbd){
       res.json(dbd);
-    });
-  } else {
-    res.redirect("/login");
-  }
-});
+    })
+  });
+})
+
+  // console.log("request is", req)
+//   if (req.user) {
+//     db.Event.findAll({
+//       limit: 5,
+//       where: {
+//         baby_id: req.user.id
+//       },
+//       order: [ [ 'id', 'DESC']],
+//       include: [db.EventDetail]
+//     }).then(function (dbd) {
+    
+//       res.json(dbd);
+//     });
+//   } else {
+//     res.redirect("/login");
+//   }
+// });
 
 // Getting baby events
 app.get("/api/getevents/timeSorted/:id", function (req, res) {
