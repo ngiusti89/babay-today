@@ -11,6 +11,14 @@ $(document).ready(function () {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
             $("#babyNameAge").text(data.baby_name + " - " + getBabyAge(data));
+            if (data.baby_img_url != ''){
+               var imgBaby = $("<img>")
+               imgBaby.attr("src",data.baby_img_url);
+               imgBaby.attr("width","150px");
+               imgBaby.attr("height","150px");
+               imgBaby.appendTo(".babyPic")
+                
+            }
         }
     });
 
@@ -129,19 +137,12 @@ $(document).ready(function () {
         var babyNameTD = $("<td>");
         babyNameTD.text(bbData.event_type_name);
         babyNameTD.appendTo(newTr)
-        var babyAgeTD = $("<td>");
-        babyAgeTD.text(getBabyAge(bbData));
-        babyAgeTD.appendTo(newTr)
+        
         var babyAgeLU = $("<td>");
-        babyAgeLU.text(moment(bbData.updatedAt).format("h:m a"));
+        babyAgeLU.text(moment(bbData.updatedAt).format("hh:mm a"));
         babyAgeLU.appendTo(newTr)
-        var babySelector = $("<td>");
-        babySelector.addClass("babySelector")
-        babySelector.data("id", bbData.id)
-        var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
-        babyText.addClass("babyLink");
-        babyText.appendTo(babySelector);
-        babySelector.appendTo(newTr);
+    
+     
         return newTr;
     }
 
