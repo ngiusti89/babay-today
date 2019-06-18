@@ -19,19 +19,20 @@ $(document).ready(function () {
         }
         console.log(rowsToAdd)
         renderBabiesList(rowsToAdd);
+        babyTodayPage();
 
       }
     });
   }
 
-  function getBabyAge(bbData){
+  function getBabyAge(bbData) {
     babyBirthday = bbData.baby_birthday;
-    if(moment().diff(moment(babyBirthday), 'months')>30){
+    if (moment().diff(moment(babyBirthday), 'months') > 30) {
       return moment().diff(moment(babyBirthday), 'years') + ' years';
-    }else{
+    } else {
       return moment().diff(moment(babyBirthday), 'months') + ' months';
     }
-    
+
   }
 
 
@@ -55,7 +56,7 @@ $(document).ready(function () {
     var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
     babyText.addClass("babyLink");
     babyText.appendTo(babySelector);
-    babySelector.appendTo(newTr);   
+    babySelector.appendTo(newTr);
     return newTr;
   }
 
@@ -66,7 +67,7 @@ $(document).ready(function () {
     if (rows.length > 0) {
       console.log(rows + babyList);
       babyList.append(rows);
-    
+
     }
     else {
       renderEmpty();
@@ -80,10 +81,64 @@ $(document).ready(function () {
     babyContainer.append(alertDiv);
   }
 
+  function babyTodayPage() {
+    // $("#errorModal").empty();
+    $("body").append($("<div>").addClass("container baby mt-4").attr({ id: "babyInfoContainer" }));
+    $("#babyInfoContainer").append($("<div>").addClass("row justify-content-center").attr("id", "firstRow"));
+    // $("babyInfoContainer").append($("<hr>"));
+    $.get("/api/getbabies", function (data) {
+      callNextAPI(data)
+    })
+  }
+
+  function callNextAPI(data) {
+
+    let arrayObj;
+    console.log("TCL: babyTodayPage -> data", data)
+    for (let i = 0; i < data.length; i++) {
+      $.get("/api/getevents/timeSorted/:" + data.account_id, function (results) {
+        for (let j = 0; j < results.length; j++) {
+          arrayObj = {
+            babyName: data[i].baby_name,
+            babyEvent: results[j].event_type_name,
+            babyEventTime: results[j].EventDetails[0].createdAt,
+            babyEventDetail: results[j].EventDetails[0].string_value,
+            babyEventDetailQty: results[j].EventDetails[0].integer_value
+          }
+          // newArray.push(arrayObj);
+          createArray(arrayObj)
+        }
+      });
+    }
+    sortThisArray(newArray);
+  }
+  let newArray = [];
+  function createArray(arrayObj){
+    newArray.push(arrayObj)
+    console.log("TCL: createTodayPageForUser -> arrayObj", arrayObj)
+    
+  }
+
+  function sortThisArray(newArray){
+    newArray.sort(function(a,b){
+      return moment(a.babyEventTime) - moment(b.babyEventTime)
+    })
+    createTodayPage(newArray)
+  }
+
+  function createTodayPage(newArray) {
+    console.log('Inside today Page:::::');
+    console.log("TCL: createTodayPage -> newArray", newArray)
+    
+  }
 
 
 
 
-  
+
+
+
+
+
 
 });

@@ -33,7 +33,13 @@ $(document).ready(function () {
         event.preventDefault();
         postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
+
+    $('body').on('click', '#feedingDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
     
+
 
     $('body').on('click', '.quickChange', function () {
         event.preventDefault();
@@ -44,6 +50,52 @@ $(document).ready(function () {
         event.preventDefault();
         postTheEvent("Feeding", 'bottle', 4, false);
     });
+
+    $('body').on('click', '#changeDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualChange($('#changeType').val(), moment($('#changeDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+
+    function postManualChange(typeOfChange, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/diaperChange', {
+                eventId: data.id,
+                typeOfBM: typeOfChange,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+    
+
+    function postManualFeedign(howMuch, typeOfFeeding, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/feedStarted', {
+                eventId: data.id,
+                typeOfFeeding: typeOfFeeding,
+                howManyOz: howMuch,
+                sleepingOrNot: false,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
 
     function postManualSleep(howLong, createdDateTime){
         $.post('/api/quicklog', {
@@ -65,6 +117,8 @@ $(document).ready(function () {
             // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
         });
     }
+
+    
 
     function postTheEvent(eventName, eventDetail, howMuch) {
         $.post('/api/quicklog', {
@@ -94,20 +148,6 @@ $(document).ready(function () {
     //     db.post
     // })
 
-//       // Get route for retrieving a single post
-//   app.get("/api/posts/:id", function(req, res) {
-//     // Here we add an "include" property to our options in our findOne query
-//     // We set the value to an array of the models we want to include in a left outer join
-//     // In this case, just db.Author
-//     db.Post.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [db.Author]
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
 
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
