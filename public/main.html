@@ -23,19 +23,24 @@
 
 <body>
     <!-- baby photo header -->
+    
     <div class="hero-image">
-        <div class="hero-text">
-            <!-- TODO: pull in name, age from user input -->
-            <h1 id="babyNameAge">Babay, [age]</h1>
-            <p>&nbsp;</p>
+        <div class="container">
+            <div class="hero-text">
+                <!-- TODO: pull in name, age from user input -->
+                <h1 id="babyNameAge">Babay, [age]</h1>
+                <p>&nbsp;</p>
+            </div>
         </div>
     </div>
+
 
     <!-- baby main menu -->
     <nav class="navbar mb-4 navbar-expand-lg navbar-light text-white bg-info">
         <div class="container" id="baby-menu">
             <!-- TODO: pull in name from user input -->
             <h4>Log An Event</h4>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,11 +57,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </li>
                     <li class="nav-item" id="reportLi">
-                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="/baby-logger" id="baby-info"><i class="fas fa-baby fa-fw"></i>Info</a>
@@ -69,11 +74,13 @@
         </div>
     </nav>
     <br>
-    
+
 
     <!-- log buttons -->
     <!-- food button -->
+    
     <div class="container" id="log-buttons">
+            
         <button type="button" class="btn btn-success btn-lg btn-block logButton" data-toggle="collapse"
             data-target="#foodOptions" id="food"><i class="fas fa-utensils fa-fw fa-lg"></i>Food</button>
         <!-- TODO food menu options -->
@@ -136,6 +143,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-lg btn-dark"   id="feedingDetailedLogSubmit">Submit</button>
                 </div>
             </div>
 
@@ -173,7 +181,7 @@
                             <tr>
                                 <th>Date/Time</th>
                                 <th>Type</th>
-                                <th>notes?</th>
+                                <th>Notes?</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -197,6 +205,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-lg btn-dark" id="changeDetailedLogSubmit">Submit</button>
                 </div>
             </div>
 
@@ -212,13 +221,13 @@
                     <!-- <button type="button" class="btn btn-lg btn-secondary" id="sleepQuickLog"><i
                             class="far fa-clock fa-fw fa-lg"></i> Log Sleep</button> -->
                     <button type="button" class="btn btn-lg btn-secondary quickSleep" id="quickSleep"><i
-                            class="fas fa-stopwatch fa-fw fa-lg"></i> Start Sleep</button>
+                            class="fas fa-stopwatch fa-fw fa-lg"></i> Quicklog Sleep</button>
                     <button type="button" class="btn btn-lg btn-dark" data-toggle="collapse" data-target="#sleepDetails"
                         id="sleepDetailedLog"><i class="fas fa-history fa-fw fa-lg"></i> Manual Sleep Log</button>
                 </div>
             </div>
         </div>
-    </div>
+    
     <!-- detailed sleep log options -->
     <div id="sleepDetails" class="collapse">
         <div class="row">
@@ -226,9 +235,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Date</th>
+                            <th>Sleep Start</th>
                             <th>How Long</th>
-                            <th>notes?</th>
+                            <th>Notes?</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -252,6 +261,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <button type="button" class="btn btn-lg btn-dark" id="sleepDetailedLogSubmit">Submit</button>
             </div>
         </div>
     </div>
@@ -260,39 +270,39 @@
     <div class="container baby mt-4">
 
         <div class="row justify-content-center">
-          <div class="col-md-6 baby-container">
-            <h1>Last 5 Events:</h1>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Type</th>
-               
-                
-                  <th>Age</th>
-                
-                
-                  <th>Last Entry:</th>
-                  <th>Baby Action Center</th>
-                </tr>
-              </thead>
-              <tbody class="babyRows">
-    
-              </tbody>
-            </table>
-          </div>
+            <div class="col-md-6 baby-container">
+                <h1>Last 5 Events:</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+
+
+                            <th>Age</th>
+
+
+                            <th>Last Entry:</th>
+                            <th>Baby Action Center</th>
+                        </tr>
+                    </thead>
+                    <tbody class="babyRows">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- <div class="row justify-content-center"> -->
-          <!-- <div class="col-md-2 col-sm-2"> -->
-            <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
-          <!-- </div> -->
-          <!-- <div class="col-md-2 col-sm-2">
+        <!-- <div class="col-md-2 col-sm-2"> -->
+        <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
+        <!-- </div> -->
+        <!-- <div class="col-md-2 col-sm-2">
             <a class="btn btn-light" href="/authors">Manage Babies</a>
           </div> -->
         <!-- </div> -->
-    
-      </div>
 
+    </div>
 
+    </div>
     <!-- members js -->
 
 

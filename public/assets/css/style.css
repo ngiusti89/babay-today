@@ -62,6 +62,10 @@ button {
     float: right;
     margin: 20px;
 }
+#sleepDetailedLogSubmit, #changeDetailedLogSubmit, #feedingDetailedLogSubmit{
+    float: right;
+    margin: 20px;
+}
 
 /* #changeQuickLog, #sleepQuickLog, #foodDetailedLog, #changeDetailedLog, #sleepDetailedLog {
     margin: 10px;
