@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
         console.log(rowsToAdd)
         renderBabiesList(rowsToAdd);
-        babyTodayPage();
+        // babyTodayPage();
 
       }
     });
