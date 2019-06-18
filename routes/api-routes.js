@@ -146,6 +146,7 @@ app.get("/api/getevents/:id", function (req, res) {
         id: req.params.id,
         account_id: req.user.id
       },
+      
       include:[{
         model: db.Event
       }]
@@ -155,6 +156,7 @@ app.get("/api/getevents/:id", function (req, res) {
           where: {
             baby_id: id           
           },
+          order: [ [ 'createdAt', 'DESC']],
           include: [{
             model: db.EventDetail
            }]
