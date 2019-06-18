@@ -64,24 +64,7 @@ $(document).ready(function () {
             })
     }
 
-    // app.get('/api/quicklog/sleepingbaby', function(request, response){
-    //     db.post
-    // })
 
-//       // Get route for retrieving a single post
-//   app.get("/api/posts/:id", function(req, res) {
-//     // Here we add an "include" property to our options in our findOne query
-//     // We set the value to an array of the models we want to include in a left outer join
-//     // In this case, just db.Author
-//     db.Post.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [db.Author]
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
 
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -164,7 +147,7 @@ $(document).ready(function () {
 
     function renderBabiesList(rows) {
         // babyList.children().not(":last").remove();
-        // babyContainer.children(".alert").remove();
+        babyContainer.children(".alert").remove();
 
         if (rows.length > 0) {
             console.log(rows + babyList);

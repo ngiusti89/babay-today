@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg mb-4 navbar-light text-white bg-info">
         <div class="container" id="baby-menu">
             <!-- TODO: pull in name from user input -->
-            <h4>Babay Today</h4>
+            <h4>Baby Logger</h4>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -58,7 +58,7 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6 baby-container">
-                <h1>Your Entries</h1>
+                <h1>Your Entries for <span id="babyNameDisp"></span></h1>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -68,13 +68,14 @@
                             <th>Event</th>
 
 
-                            <th>Detail</th>
+                            <th>Type</th>
                             <th>Quantity</th>
+                            
                         </tr>
-                    </thead>
-                    <div class="babyRows">
+                   </thead>
+                    <tbody class="babyRows">
 
-                    </div>
+                    </tbody>
                 </table>
             </div>
         </div>

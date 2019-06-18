@@ -23,6 +23,7 @@ module.exports = function (app) {
 
       })
         .then(function (dbBaby) {
+      
           response.json(dbBaby);
         });
     }
