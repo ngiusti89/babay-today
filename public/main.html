@@ -57,11 +57,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </li>
                     <li class="nav-item" id="reportLi">
-                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="/baby-logger" id="baby-info"><i class="fas fa-baby fa-fw"></i>Info</a>
@@ -74,7 +74,7 @@
         </div>
     </nav>
     <br>
-    
+
 
     <!-- log buttons -->
     <!-- food button -->
@@ -137,9 +137,6 @@
                                         <option>40 oz.</option>
                                     </select>
                                 </td>
-                                <th>
-                                    <button type="button" class="btn btn-lg btn-dark" id="feedingDetailedLogSubmit">Submit</button>
-                                </th>
                             </tr>
                         </tbody>
                     </table>
@@ -191,7 +188,7 @@
                                         id="changeDetailTime">
                                 </td>
                                 <td>
-                                    <select class="form-control-lg" id="changeType">
+                                    <select class="form-control-lg" id="foodType">
                                         <option selected="">Wet</option>
                                         <option>Solids</option>
                                     </select>
@@ -199,9 +196,6 @@
                                 <td>
                                     <textarea class="form-control" id="changeNotes" rows="2"></textarea>
                                 </td>
-                                <th>
-                                    <button type="button" class="btn btn-lg btn-dark" id="changeDetailedLogSubmit">Submit</button>
-                                </th>
                             </tr>
                         </tbody>
                     </table>
@@ -243,11 +237,11 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                            <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
                                     id="sleepDetailTime">
                             </td>
                             <td>
-                                <select class="form-control-lg" id="sleepType">
+                                <select class="form-control-lg" id="foodType">
                                     <option selected="">Nap</option>
                                     <option>Full Night</option>
                                 </select>
@@ -255,9 +249,6 @@
                             <td>
                                 <textarea class="form-control" id="changeNotes" rows="2"></textarea>
                             </td>
-                            <th>
-                                <button type="button" class="btn btn-lg btn-dark" id="sleepDetailedLogSubmit">Submit</button>
-                            </th>
                         </tr>
                     </tbody>
                 </table>
@@ -289,15 +280,15 @@
           </div>
         </div>
         <!-- <div class="row justify-content-center"> -->
-          <!-- <div class="col-md-2 col-sm-2"> -->
-            <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
-          <!-- </div> -->
-          <!-- <div class="col-md-2 col-sm-2">
+        <!-- <div class="col-md-2 col-sm-2"> -->
+        <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
+        <!-- </div> -->
+        <!-- <div class="col-md-2 col-sm-2">
             <a class="btn btn-light" href="/authors">Manage Babies</a>
           </div> -->
         <!-- </div> -->
-    
-      </div>
+
+    </div>
 
     </div>
     <!-- members js -->

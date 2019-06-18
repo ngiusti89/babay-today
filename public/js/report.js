@@ -72,7 +72,7 @@ function createBabyRowSelector(bbData){
 
 function getQuanType(type, amount){
     if (type == 'Feeding'){
-    return (amount+ " Ounces");
+    return (amount ===null ? '' : amount+ " Ounces");
     } else{
         return '';
     }

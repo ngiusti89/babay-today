@@ -48,6 +48,9 @@ $(document).ready(function () {
         event.preventDefault();
         postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
+
+
+    foodQuickLogNursing
     
 
 
@@ -60,6 +63,13 @@ $(document).ready(function () {
         event.preventDefault();
         postTheEvent("Feeding", 'bottle', 4, false);
     });
+
+    $('body').on('click', '#foodQuickLogNursing', function () {
+        event.preventDefault();
+        postTheEvent("Feeding", 'Nursing', 4, false);
+    });
+
+    
 
     $('body').on('click', '#changeDetailedLogSubmit', function () {
         event.preventDefault();
@@ -108,6 +118,8 @@ $(document).ready(function () {
     }
 
     function postManualSleep(howLong, createdDateTime){
+        console.log("in manual sleep");
+        
         $.post('/api/quicklog', {
             eventName: 'Sleep',
             babyId: urlParm
@@ -178,6 +190,7 @@ $(document).ready(function () {
 
 
     // Setting Up Last-Five Chart
+    var urlParm = getUrlParameter("baby-id");
     var babyList = $(".babyRows");
     var babyContainer = $(".baby-container");
 
