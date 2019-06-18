@@ -25,12 +25,11 @@
     <!-- baby photo header -->
     
     <div class="hero-image">
-        <div class="container">
-            <div class="hero-text">
-                <!-- TODO: pull in name, age from user input -->
-                <h1 id="babyNameAge">Babay, [age]</h1>
-                <p>&nbsp;</p>
-            </div>
+        <div class="hero-text">
+            <!-- TODO: pull in name, age from user input -->
+            <h1 id="babyNameAge">Babay, [age]</h1>
+            
+            
         </div>
     </div>
 
@@ -57,11 +56,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
                     <li class="nav-item" id="reportLi">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </li>
-
+                       
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="/baby-logger" id="baby-info"><i class="fas fa-baby fa-fw"></i>Info</a>
@@ -74,7 +73,7 @@
         </div>
     </nav>
     <br>
-
+    
 
     <!-- log buttons -->
     <!-- food button -->
@@ -261,37 +260,34 @@
     <div class="container baby mt-4">
 
         <div class="row justify-content-center">
-            <div class="col-md-6 baby-container">
-                <h1>Last 5 Events:</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-
-
-                            <th>Age</th>
-
-
-                            <th>Last Entry:</th>
-                            <th>Baby Action Center</th>
-                        </tr>
-                    </thead>
-                    <tbody class="babyRows">
-
-                    </tbody>
-                </table>
-            </div>
+          <div class="col-md-4 baby-container">
+            <h1>Last 5 Events:</h1>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                    
+                              
+                  <th>Entered At:</th>
+                 
+                </tr>
+              </thead>
+              <tbody class="babyRows">
+    
+              </tbody>
+            </table>
+          </div>
         </div>
         <!-- <div class="row justify-content-center"> -->
-        <!-- <div class="col-md-2 col-sm-2"> -->
-        <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
-        <!-- </div> -->
-        <!-- <div class="col-md-2 col-sm-2">
+          <!-- <div class="col-md-2 col-sm-2"> -->
+            <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
+          <!-- </div> -->
+          <!-- <div class="col-md-2 col-sm-2">
             <a class="btn btn-light" href="/authors">Manage Babies</a>
           </div> -->
         <!-- </div> -->
-
-    </div>
+    
+      </div>
 
     </div>
     <!-- members js -->

@@ -4,8 +4,8 @@ $(document).ready(function () {
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
     
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep nav-link");
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
