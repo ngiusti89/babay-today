@@ -49,27 +49,107 @@ $(document).ready(function () {
     $('body').on('click', '#quickSleep', function () {
         event.preventDefault();
         console.log('baby id:' + urlParm)
-        postTheEvent('Sleep', '');
+        postTheEvent('Sleep', '', 0);
     });
+
+    $('body').on('click', '#sleepDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+
+    $('body').on('click', '#feedingDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+    
+
 
     $('body').on('click', '.quickChange', function () {
         event.preventDefault();
-        postTheEvent("Diaper Change", $(this).text());
+        postTheEvent("Diaper Change", $(this).text(), 0);
     });
 
     $('body').on('click', '#foodQuickLogBottle', function () {
         event.preventDefault();
-        postTheEvent("Feeding", 'bottle');
+        postTheEvent("Feeding", 'bottle', 4, false);
     });
 
-    function postTheEvent(eventName, eventDetail) {
+    $('body').on('click', '#changeDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualChange($('#changeType').val(), moment($('#changeDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+
+    function postManualChange(typeOfChange, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/diaperChange', {
+                eventId: data.id,
+                typeOfBM: typeOfChange,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+    
+
+    function postManualFeedign(howMuch, typeOfFeeding, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/feedStarted', {
+                eventId: data.id,
+                typeOfFeeding: typeOfFeeding,
+                howManyOz: howMuch,
+                sleepingOrNot: false,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+
+    function postManualSleep(howLong, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Sleep',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/sleepStarted', {
+                eventId: data.id,
+                // typeOfFeeding: 'Sleep',
+                sleepDuration: howLong,
+                sleepingOrNot: false,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual sleep event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+
+    
+
+    function postTheEvent(eventName, eventDetail, howMuch) {
         $.post('/api/quicklog', {
             eventName: eventName,
             babyId: urlParm
         }).then(function (data) {
-            if(eventName==='Sleep'){}
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , 4, (eventName==='Sleep'));
+            postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
         });
     }
 
@@ -132,17 +212,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    function getBabyAge(bbData) {
-        babyBirthday = bbData.baby_birthday;
-        if (moment().diff(moment(babyBirthday), 'months') > 30) {
-            return moment().diff(moment(babyBirthday), 'years') + ' years';
-        } else {
-            return moment().diff(moment(babyBirthday), 'months') + ' months';
-        }
-
-    }
-
 
     function createBabyRowSelector(bbData) {
         getBabyAge(bbData);

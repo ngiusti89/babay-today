@@ -34,6 +34,7 @@ module.exports = function (app) {
       db.EventDetail.create({
         event_type_key: request.body.eventId,
         string_value: request.body.typeOfBM,
+        createdAt: request.body.createdDateTime
       })
         .then(function (data) {
           response.json(data);
@@ -48,6 +49,7 @@ module.exports = function (app) {
         string_value: request.body.typeOfFeeding,
         integer_value: request.body.howManyOz,
         time_started_bool: request.body.timeStarted,
+        createdAt: request.body.createdDateTime
       })
         .then(function (data) {
           response.json(data);
@@ -60,7 +62,8 @@ module.exports = function (app) {
       db.EventDetail.create({
         event_type_key: request.body.eventId,
         integer_value: request.body.sleepDuration,
-        time_started_bool: request.body.sleepingOrNot
+        time_started_bool: request.body.sleepingOrNot,
+        createdAt : request.body.createdDateTime
       })
       .then(function(data){
         response.json(data);
@@ -99,6 +102,26 @@ app.get("/api/getevents/:id", function (req, res) {
         baby_id: req.user.id
       },
       order: [ [ 'id', 'DESC']],
+      include: [db.EventDetail]
+    }).then(function (dbd) {
+    
+      res.json(dbd);
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+// Getting baby events
+app.get("/api/getevents/timeSorted/:id", function (req, res) {
+  // console.log("request is", req)
+  if (req.user) {
+    db.Event.findAll({
+      limit: 5,
+      where: {
+        baby_id: req.user.id
+      },
+      order: [ [ 'createdAt', 'DESC']],
       include: [db.EventDetail]
     }).then(function (dbd) {
     
