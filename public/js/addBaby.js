@@ -6,10 +6,12 @@ $(document).ready(function () {
             var babyName = $('#babyName').val().trim();
             var babyGender = $('.babyGender').val();
             var babyBirthday = $('#babyBday').val().trim();
+            var babyImg =$('#babyImage').val().trim();
             $.post('/api/addbaby', {
                 babyName: babyName,
                 babyGender: babyGender,
-                babyBirthday: babyBirthday
+                babyBirthday: babyBirthday,
+                babyImage:babyImg
             }).then(function (data) {
                 console.log(data);
                 window.location.href = "/babypicker";
