@@ -121,7 +121,8 @@ $(document).ready(function () {
 
   function sortThisArray(newArray){
     newArray.sort(function(a,b){
-      return moment(a.babyEventTime) - moment(b.babyEventTime)
+      // return moment(a.babyEventTime) - moment(b.babyEventTime)
+      return moment.utc(a.babyEventTime).diff(moment.utc(b.babyEventTime));
     })
     createTodayPage(newArray)
   }

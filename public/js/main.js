@@ -144,9 +144,6 @@ $(document).ready(function () {
             })
     }
 
-    // app.get('/api/quicklog/sleepingbaby', function(request, response){
-    //     db.post
-    // })
 
 
     function getUrlParameter(name) {
@@ -219,7 +216,7 @@ $(document).ready(function () {
 
     function renderBabiesList(rows) {
         // babyList.children().not(":last").remove();
-        // babyContainer.children(".alert").remove();
+        babyContainer.children(".alert").remove();
 
         if (rows.length > 0) {
             console.log(rows + babyList);
