@@ -4,13 +4,36 @@ $(document).ready(function () {
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
     
-    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
     babyRep.addClass("babyRep");
+=======
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep nav-link");
+>>>>>>> d5baf9d2c3709f8ad5eca15d025126162e2db84c
+=======
+    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
+    babyRep.addClass("babyRep");
+>>>>>>> 10f41b225b4ee0ff5330c7e6e40c1cfff3cb32e1
+=======
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    babyRep.addClass("babyRep nav-link");
+>>>>>>> d55b3dc8fbf001fcb47030251cba75527bf48a7f
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
         if (data) {
             $("#babyNameAge").text(data.baby_name + " - " + getBabyAge(data));
+            // if (data.baby_img_url != ''){
+            //    var imgBaby = $("<img>")
+            //    imgBaby.attr("src",data.baby_img_url);
+            //    imgBaby.attr("width","150px");
+            //    imgBaby.attr("height","150px");
+            //    imgBaby.appendTo(".babyPic")
+                
+            // }
         }
     });
 
@@ -26,27 +49,107 @@ $(document).ready(function () {
     $('body').on('click', '#quickSleep', function () {
         event.preventDefault();
         console.log('baby id:' + urlParm)
-        postTheEvent('Sleep', '');
+        postTheEvent('Sleep', '', 0);
     });
+
+    $('body').on('click', '#sleepDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+
+    $('body').on('click', '#feedingDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+    
+
 
     $('body').on('click', '.quickChange', function () {
         event.preventDefault();
-        postTheEvent("Diaper Change", $(this).text());
+        postTheEvent("Diaper Change", $(this).text(), 0);
     });
 
     $('body').on('click', '#foodQuickLogBottle', function () {
         event.preventDefault();
-        postTheEvent("Feeding", 'bottle');
+        postTheEvent("Feeding", 'bottle', 4, false);
     });
 
-    function postTheEvent(eventName, eventDetail) {
+    $('body').on('click', '#changeDetailedLogSubmit', function () {
+        event.preventDefault();
+        postManualChange($('#changeType').val(), moment($('#changeDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+    });
+
+    function postManualChange(typeOfChange, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/diaperChange', {
+                eventId: data.id,
+                typeOfBM: typeOfChange,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+    
+
+    function postManualFeedign(howMuch, typeOfFeeding, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Feeding',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/feedStarted', {
+                eventId: data.id,
+                typeOfFeeding: typeOfFeeding,
+                howManyOz: howMuch,
+                sleepingOrNot: false,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual Feeding event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+
+    function postManualSleep(howLong, createdDateTime){
+        $.post('/api/quicklog', {
+            eventName: 'Sleep',
+            babyId: urlParm
+        }).then(function (data) {
+            console.log("TCL: EVENT data: ", data)
+            $.post('/api/quicklog/sleepStarted', {
+                eventId: data.id,
+                // typeOfFeeding: 'Sleep',
+                sleepDuration: howLong,
+                sleepingOrNot: false,
+                createdDateTime: createdDateTime
+            })
+                .then(function (data) {
+                    console.log("TCL: nowPostEventDetails -> Event Detail DAta:", data)
+                    popupModal('Manual sleep event posted successfully', "Success!")
+                })
+            // ?postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
+        });
+    }
+
+    
+
+    function postTheEvent(eventName, eventDetail, howMuch) {
         $.post('/api/quicklog', {
             eventName: eventName,
             babyId: urlParm
         }).then(function (data) {
-            if(eventName==='Sleep'){}
             console.log("TCL: EVENT data: ", data)
-            postEventDetails(data, eventName, eventDetail , 4, (eventName==='Sleep'));
+            postEventDetails(data, eventName, eventDetail , howMuch, (eventName==='Sleep'));
         });
     }
 
@@ -64,24 +167,7 @@ $(document).ready(function () {
             })
     }
 
-    // app.get('/api/quicklog/sleepingbaby', function(request, response){
-    //     db.post
-    // })
 
-//       // Get route for retrieving a single post
-//   app.get("/api/posts/:id", function(req, res) {
-//     // Here we add an "include" property to our options in our findOne query
-//     // We set the value to an array of the models we want to include in a left outer join
-//     // In this case, just db.Author
-//     db.Post.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [db.Author]
-//     }).then(function(dbPost) {
-//       res.json(dbPost);
-//     });
-//   });
 
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -127,17 +213,6 @@ $(document).ready(function () {
         });
     }
 
-    function getBabyAge(bbData) {
-        babyBirthday = bbData.baby_birthday;
-        if (moment().diff(moment(babyBirthday), 'months') > 30) {
-            return moment().diff(moment(babyBirthday), 'years') + ' years';
-        } else {
-            return moment().diff(moment(babyBirthday), 'months') + ' months';
-        }
-
-    }
-
-
     function createBabyRowSelector(bbData) {
         getBabyAge(bbData);
         console.log(bbData.event_type_name)
@@ -146,25 +221,18 @@ $(document).ready(function () {
         var babyNameTD = $("<td>");
         babyNameTD.text(bbData.event_type_name);
         babyNameTD.appendTo(newTr)
-        var babyAgeTD = $("<td>");
-        babyAgeTD.text(getBabyAge(bbData));
-        babyAgeTD.appendTo(newTr)
+        
         var babyAgeLU = $("<td>");
-        babyAgeLU.text(moment(bbData.updatedAt).format("h:m a"));
+        babyAgeLU.text(moment(bbData.updatedAt).format("hh:mm a"));
         babyAgeLU.appendTo(newTr)
-        var babySelector = $("<td>");
-        babySelector.addClass("babySelector")
-        babySelector.data("id", bbData.id)
-        var babyText = $('<a href="/main?baby-id=' + bbData.id + '">View Baby</a>');
-        babyText.addClass("babyLink");
-        babyText.appendTo(babySelector);
-        babySelector.appendTo(newTr);
+    
+     
         return newTr;
     }
 
     function renderBabiesList(rows) {
         // babyList.children().not(":last").remove();
-        // babyContainer.children(".alert").remove();
+        babyContainer.children(".alert").remove();
 
         if (rows.length > 0) {
             console.log(rows + babyList);

@@ -1,6 +1,8 @@
 body, html {
     height: 100%;
     margin: 0;
+    font-family: 'Lato', sans-serif;
+    background-image: url("../images/cloudy-day.png")
 }
 
 /* hero  */
@@ -22,9 +24,18 @@ body, html {
     color: white;
 }
 
+h1 {
+    font-family: 'Raleway', sans-serif;
+}
+
 h4 {
     font-size: 28px;
     line-height: 1.8em;
+    font-family: 'Raleway', sans-serif;
+}
+
+button {
+    font-family: 'Lato', sans-serif;
 }
 
 /* log buttons */
@@ -48,6 +59,10 @@ h4 {
 }
 
 #foodDetailedLog, #changeDetailedLog, #sleepDetailedLog {
+    float: right;
+    margin: 20px;
+}
+#sleepDetailedLogSubmit, #changeDetailedLogSubmit, #feedingDetailedLogSubmit{
     float: right;
     margin: 20px;
 }

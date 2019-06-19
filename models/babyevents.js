@@ -14,7 +14,13 @@ module.exports = function(sequelize, DataTypes) {
     });
     
     Event.associate = function(models) {           
-  
+        
+        
+            // Event.belongsTo(models.Baby, {
+            //   foreignKey: "baby_id"
+            // });
+          
+
         Event.hasMany(models.EventDetail, {
               onDelete: "cascade",
               foreignKey:"event_type_key"
