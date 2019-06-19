@@ -4,23 +4,8 @@ $(document).ready(function () {
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
-=======
     var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
     babyRep.addClass("babyRep nav-link");
->>>>>>> d5baf9d2c3709f8ad5eca15d025126162e2db84c
-=======
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
->>>>>>> 10f41b225b4ee0ff5330c7e6e40c1cfff3cb32e1
-=======
-    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
-    babyRep.addClass("babyRep nav-link");
->>>>>>> d55b3dc8fbf001fcb47030251cba75527bf48a7f
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
@@ -54,7 +39,7 @@ $(document).ready(function () {
 
     $('body').on('click', '#sleepDetailedLogSubmit', function () {
         event.preventDefault();
-        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+        postManualSleep(($('#sleepType').val(),$('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
 
     $('body').on('click', '#feedingDetailedLogSubmit', function () {
@@ -120,7 +105,7 @@ $(document).ready(function () {
         });
     }
 
-    function postManualSleep(howLong, createdDateTime){
+    function postManualSleep(type,howLong, createdDateTime){
         $.post('/api/quicklog', {
             eventName: 'Sleep',
             babyId: urlParm
@@ -128,7 +113,7 @@ $(document).ready(function () {
             console.log("TCL: EVENT data: ", data)
             $.post('/api/quicklog/sleepStarted', {
                 eventId: data.id,
-                // typeOfFeeding: 'Sleep',
+                sleepType: type,
                 sleepDuration: howLong,
                 sleepingOrNot: false,
                 createdDateTime: createdDateTime
@@ -191,6 +176,7 @@ $(document).ready(function () {
 
 
     // Setting Up Last-Five Chart
+    var urlParm = getUrlParameter("baby-id");
     var babyList = $(".babyRows");
     var babyContainer = $(".baby-container");
 
@@ -247,7 +233,7 @@ $(document).ready(function () {
     function renderEmpty() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert alert-danger");
-        alertDiv.text("You must create a BABY (again).");
+        alertDiv.text("No events found.");
         babyContainer.append(alertDiv);
     }
 

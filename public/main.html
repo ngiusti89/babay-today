@@ -25,14 +25,6 @@
     <!-- baby photo header -->
     
     <div class="hero-image">
-
-        <div class="container">
-            <div class="hero-text">
-                <!-- TODO: pull in name, age from user input -->
-                <h1 id="babyNameAge">Babay, [age]</h1>
-                <p>&nbsp;</p>
-            </div>
-
         <div class="hero-text">
 
             <h1 id="babyNameAge">Babay</h1>
@@ -41,7 +33,7 @@
             <!-- TODO: pull in name, age from user input -->
             <h1 id="babyNameAge">Babay, [age]</h1>
             
-
+            
         </div>
     </div>
 
@@ -67,11 +59,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/addbaby" id="baby-add"><i class="fas fa-plus"></i> Add Baby</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </li>
                     <li class="nav-item" id="reportLi">
-                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="/baby-logger" id="baby-info"><i class="fas fa-baby fa-fw"></i>Info</a>
@@ -134,21 +126,18 @@
                                 </td>
                                 <td>
                                     <select class="form-control-lg" id="foodAmount">
-                                        <option selected="">4 oz.</option>
-                                        <option>8 oz.</option>
-                                        <option>12 oz.</option>
-                                        <option>16 oz.</option>
-                                        <option>20 oz.</option>
-                                        <option>24 oz.</option>
-                                        <option>28 oz.</option>
-                                        <option>32 oz.</option>
-                                        <option>36 oz.</option>
-                                        <option>40 oz.</option>
+                                        <option selected="">4</option>
+                                        <option>8</option>
+                                        <option>12</option>
+                                        <option>16</option>
+                                        <option>20</option>
+                                        <option>24</option>
+                                        <option>28</option>
+                                        <option>32</option>
+                                        <option>36</option>
+                                        <option>40</option>
                                     </select>
                                 </td>
-                                <th>
-                                    <button type="button" class="btn btn-lg btn-dark" id="feedingDetailedLogSubmit">Submit</button>
-                                </th>
                             </tr>
                         </tbody>
                     </table>
@@ -207,9 +196,6 @@
                                 <td>
                                     <textarea class="form-control" id="changeNotes" rows="2"></textarea>
                                 </td>
-                                <th>
-                                    <button type="button" class="btn btn-lg btn-dark" id="changeDetailedLogSubmit">Submit</button>
-                                </th>
                             </tr>
                         </tbody>
                     </table>
@@ -251,7 +237,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
+                            <input class="form-control-lg" type="datetime-local" value="2019-06-19T13:45:00"
                                     id="sleepDetailTime">
                             </td>
                             <td>
@@ -261,11 +247,8 @@
                                 </select>
                             </td>
                             <td>
-                                <textarea class="form-control" id="changeNotes" rows="2"></textarea>
+                                <textarea class="form-control" id="sleepNotes" rows="2"></textarea>
                             </td>
-                            <th>
-                                <button type="button" class="btn btn-lg btn-dark" id="sleepDetailedLogSubmit">Submit</button>
-                            </th>
                         </tr>
                     </tbody>
                 </table>
@@ -278,28 +261,6 @@
     <div class="container baby mt-4">
 
         <div class="row justify-content-center">
-
-            <div class="col-md-6 baby-container">
-                <h1>Last 5 Events:</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-
-
-                            <th>Age</th>
-
-
-                            <th>Last Entry:</th>
-                            <th>Baby Action Center</th>
-                        </tr>
-                    </thead>
-                    <tbody class="babyRows">
-
-                    </tbody>
-                </table>
-            </div>
-
           <div class="col-md-4 baby-container">
             <h1>Last 5 Events:</h1>
             <table class="table table-striped">
@@ -317,18 +278,17 @@
               </tbody>
             </table>
           </div>
-
         </div>
         <!-- <div class="row justify-content-center"> -->
-          <!-- <div class="col-md-2 col-sm-2"> -->
-            <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
-          <!-- </div> -->
-          <!-- <div class="col-md-2 col-sm-2">
+        <!-- <div class="col-md-2 col-sm-2"> -->
+        <!-- <a class="btn btn-light addBabyBtn" href="/addbaby">Add a Baby</a> -->
+        <!-- </div> -->
+        <!-- <div class="col-md-2 col-sm-2">
             <a class="btn btn-light" href="/authors">Manage Babies</a>
           </div> -->
         <!-- </div> -->
-    
-      </div>
+
+    </div>
 
     </div>
     <!-- members js -->
