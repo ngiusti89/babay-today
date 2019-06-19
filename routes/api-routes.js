@@ -63,7 +63,8 @@ module.exports = function (app) {
         event_type_key: request.body.eventId,
         integer_value: request.body.sleepDuration,
         time_started_bool: request.body.sleepingOrNot,
-        createdAt : request.body.createdDateTime
+        createdAt : request.body.createdDateTime,
+        sleep_type: request.body.sleepType
       })
       .then(function(data){
         response.json(data);
