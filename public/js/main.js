@@ -3,9 +3,11 @@ $(document).ready(function () {
     var urlParm = getUrlParameter("baby-id");
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
-    
+    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
+    babyRep.addClass("babyRep");
     var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
     babyRep.addClass("babyRep nav-link");
+
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
@@ -46,6 +48,9 @@ $(document).ready(function () {
         event.preventDefault();
         postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
+
+
+    foodQuickLogNursing
     
 
 
@@ -58,6 +63,13 @@ $(document).ready(function () {
         event.preventDefault();
         postTheEvent("Feeding", 'bottle', 4, false);
     });
+
+    $('body').on('click', '#foodQuickLogNursing', function () {
+        event.preventDefault();
+        postTheEvent("Feeding", 'Nursing', 4, false);
+    });
+
+    
 
     $('body').on('click', '#changeDetailedLogSubmit', function () {
         event.preventDefault();
