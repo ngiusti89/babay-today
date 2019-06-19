@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     $('body').on('click', '#sleepDetailedLogSubmit', function () {
         event.preventDefault();
-        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+        postManualSleep(($('#sleepType').val(),$('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
 
     $('body').on('click', '#feedingDetailedLogSubmit', function () {
@@ -105,7 +105,7 @@ $(document).ready(function () {
         });
     }
 
-    function postManualSleep(howLong, createdDateTime){
+    function postManualSleep(type,howLong, createdDateTime){
         $.post('/api/quicklog', {
             eventName: 'Sleep',
             babyId: urlParm
@@ -113,7 +113,7 @@ $(document).ready(function () {
             console.log("TCL: EVENT data: ", data)
             $.post('/api/quicklog/sleepStarted', {
                 eventId: data.id,
-                // typeOfFeeding: 'Sleep',
+                sleepType: type,
                 sleepDuration: howLong,
                 sleepingOrNot: false,
                 createdDateTime: createdDateTime
@@ -233,7 +233,7 @@ $(document).ready(function () {
     function renderEmpty() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert alert-danger");
-        alertDiv.text("You must create a BABY (again).");
+        alertDiv.text("No events found.");
         babyContainer.append(alertDiv);
     }
 
